@@ -1,0 +1,98 @@
+<https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66> {
+  <https://data.gov.cz/zdroj/katalog/NKOD> <http://www.w3.org/ns/dcat#dataset> <https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66>;
+    <http://www.w3.org/ns/dcat#record> <https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66/záznam> .
+  
+  <https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66>
+    a <http://www.w3.org/ns/dcat#Dataset>, <https://data.gov.cz/slovník/nkod/typ-datové-sady-dle-zdroje/DcatLkodSparql>;
+    <http://purl.org/dc/terms/title> "Číselník druhů akcí v tiskopise Oznámení o nástupu do zaměstnání"@cs;
+    <http://purl.org/dc/terms/description> "Číselník druhů akcí ONZ, který slouží jako podpora pro vyplňování hodnot v tiskopisech"@cs;
+    <http://purl.org/dc/terms/issued> "2016-12-19"^^<http://www.w3.org/2001/XMLSchema#date>;
+    <http://www.w3.org/ns/dcat#distribution> <https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66/distribuce/86f14b51c370a3aeb1bff349860a1ec7>;
+    <http://purl.org/dc/terms/modified> "2019-07-15"^^<http://www.w3.org/2001/XMLSchema#date>;
+    <http://purl.org/dc/terms/spatial> <https://linked.cuzk.cz/resource/ruian/stat/1>;
+    <http://purl.org/dc/terms/language> <http://publications.europa.eu/resource/authority/language/CES>;
+    <http://purl.org/dc/terms/publisher> <https://data.gov.cz/zdroj/ovm/00006963>;
+    <http://www.w3.org/ns/dcat#keyword> "číselník"@cs;
+    <http://www.w3.org/ns/dcat#landingPage> <https://data.cssz.cz/dataset/ciselnik-druhu-akci-v-tiskopise-onz>;
+    <http://purl.org/dc/terms/accrualPeriodicity> <http://publications.europa.eu/resource/authority/frequency/IRREG>;
+    <http://purl.org/dc/terms/identifier> "ciselnik-druhu-akci-v-tiskopise-onz";
+    <http://www.w3.org/ns/dcat#theme> <http://publications.europa.eu/resource/authority/data-theme/GOVE>;
+    <http://xmlns.com/foaf/0.1/page> <https://data.cssz.cz/documentation/ciselnik-druhu-akci-v-tiskopise-onz>;
+    <http://purl.org/dc/terms/type> <http://publications.europa.eu/resource/authority/dataset-type/CODE_LIST>;
+    <http://www.w3.org/ns/dcat#contactPoint> <https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66/kontaktní-bod> .
+  
+  <http://publications.europa.eu/resource/authority/data-theme/GOVE> <http://www.w3.org/2004/02/skos/core#inScheme>
+      <http://publications.europa.eu/resource/authority/data-theme> .
+  
+  <https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66/kontaktní-bod>
+    a <http://www.w3.org/2006/vcard/ns#Individual>;
+    <http://www.w3.org/2006/vcard/ns#fn> "Ing. Jiří Šunka";
+    <http://www.w3.org/2006/vcard/ns#hasEmail> "opendata@cssz.cz" .
+  
+  <https://data.gov.cz/zdroj/ovm/00006963> a <http://xmlns.com/foaf/0.1/Agent>;
+    <http://xmlns.com/foaf/0.1/name> "Česká správa sociálního zabezpečení"@cs .
+  
+  <https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66/distribuce/86f14b51c370a3aeb1bff349860a1ec7>
+    a <http://www.w3.org/ns/dcat#Distribution>;
+    <https://data.gov.cz/slovník/nkod/typ-úložiště-datové-sady/typÚložiště> <https://data.gov.cz/slovník/nkod/typ-úložiště-datové-sady/Web>;
+    <http://purl.org/dc/terms/title> "Číselník druhů akcí v tiskopise Oznámení o nástupu do zaměstnání"@cs;
+    <http://purl.org/dc/terms/description> "Číselník druhů akcí ONZ, který slouží jako podpora pro vyplňování hodnot v tiskopisech"@cs;
+    <http://purl.org/dc/terms/format> <http://publications.europa.eu/resource/authority/file-type/CSV>;
+    <http://purl.org/dc/terms/issued> "2016-12-19"^^<http://www.w3.org/2001/XMLSchema#date>;
+    <http://purl.org/dc/terms/modified> "2019-07-15"^^<http://www.w3.org/2001/XMLSchema#date>;
+    <http://www.w3.org/ns/dcat#accessURL> <https://data.cssz.cz/dataset/ciselnik-druhu-akci-v-tiskopise-onz>;
+    <http://www.w3.org/ns/dcat#downloadURL> <https://data.cssz.cz/dump/ciselnik-druhu-akci-v-tiskopise-onz.csv>;
+    <http://www.w3.org/ns/dcat#mediaType> <http://www.iana.org/assignments/media-types/text/csv>;
+    <http://purl.org/dc/terms/type> <http://publications.europa.eu/resource/authority/distribution-type/DOWNLOADABLE_FILE>;
+    <http://www.w3.org/ns/adms#status> <http://purl.org/adms/status/Completed>;
+    <http://purl.org/dc/terms/language> <http://publications.europa.eu/resource/authority/language/CES>;
+    <http://purl.org/dc/terms/conformsTo> <https://data.cssz.cz/dump/ciselnik-druhu-akci-v-tiskopise-onz-schema.json>;
+    <https://data.gov.cz/slovník/podmínky-užití/specifikace> <https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66/distribuce/86f14b51c370a3aeb1bff349860a1ec7/podmínky-užití> .
+  
+  <https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66/distribuce/86f14b51c370a3aeb1bff349860a1ec7/podmínky-užití>
+    a <https://data.gov.cz/slovník/podmínky-užití/Specifikace>;
+    <https://data.gov.cz/slovník/podmínky-užití/autorské-dílo> <https://data.gov.cz/podmínky-užití/neobsahuje-autorská-díla/>;
+    <https://data.gov.cz/slovník/podmínky-užití/databáze-jako-autorské-dílo> <https://data.gov.cz/podmínky-užití/není-autorskoprávně-chráněnou-databází/>;
+    <https://data.gov.cz/slovník/podmínky-užití/databáze-chráněná-zvláštními-právy> <https://data.gov.cz/podmínky-užití/není-chráněna-zvláštním-právem-pořizovatele-databáze/>;
+    <https://data.gov.cz/slovník/podmínky-užití/osobní-údaje> <https://data.gov.cz/podmínky-užití/neobsahuje-osobní-údaje/> .
+  
+  <https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66/záznam>
+    a <http://www.w3.org/ns/dcat#CatalogRecord>;
+    <http://xmlns.com/foaf/0.1/primaryTopic> <https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66>;
+    <http://purl.org/dc/terms/language> <http://publications.europa.eu/resource/authority/language/CES>;
+    <http://purl.org/dc/terms/conformsTo> <https://joinup.ec.europa.eu/release/dcat-ap/12> .
+  
+  <https://data.gov.cz/zdroj/lokální-katalogy/CSShZbzpcn/695492977> <http://www.w3.org/ns/dcat#dataset>
+      <https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66> .
+  
+  <https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66/kontaktní-bod>
+    a <http://www.w3.org/2006/vcard/ns#Kind> .
+  
+  <https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66>
+    <http://purl.org/dc/terms/identifier> "https://data.cssz.cz/resource/dataset/ciselnik-druhu-akci-v-tiskopise-onz"^^<http://www.w3.org/2001/XMLSchema#anyURI>;
+    <http://www.w3.org/ns/dcat#distribution> <https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66/distribuce/b5163aa22ae8f92c9960bc6816a6a993> .
+  
+  <https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66/distribuce/b5163aa22ae8f92c9960bc6816a6a993>
+    a <http://www.w3.org/ns/dcat#Distribution>;
+    <https://data.gov.cz/slovník/nkod/typ-úložiště-datové-sady/typÚložiště> <https://data.gov.cz/slovník/nkod/typ-úložiště-datové-sady/Web>;
+    <http://purl.org/dc/terms/title> "Číselník druhů akcí v tiskopise Oznámení o nástupu do zaměstnání"@cs;
+    <http://purl.org/dc/terms/description> "Číselník druhů akcí ONZ, který slouží jako podpora pro vyplňování hodnot v tiskopisech"@cs;
+    <http://purl.org/dc/terms/format> <http://publications.europa.eu/resource/authority/file-type/RDF_TRIG>;
+    <http://purl.org/dc/terms/issued> "2016-12-19"^^<http://www.w3.org/2001/XMLSchema#date>;
+    <http://purl.org/dc/terms/modified> "2019-07-15"^^<http://www.w3.org/2001/XMLSchema#date>;
+    <http://www.w3.org/ns/dcat#accessURL> <https://data.cssz.cz/dataset/ciselnik-druhu-akci-v-tiskopise-onz>;
+    <http://www.w3.org/ns/dcat#downloadURL> <https://data.cssz.cz/dump/ciselnik-druhu-akci-v-tiskopise-onz.trig>;
+    <http://www.w3.org/ns/dcat#mediaType> <http://www.iana.org/assignments/media-types/application/trig>;
+    <http://purl.org/dc/terms/type> <http://publications.europa.eu/resource/authority/distribution-type/DOWNLOADABLE_FILE>;
+    <http://www.w3.org/ns/adms#status> <http://purl.org/adms/status/Completed>;
+    <http://purl.org/dc/terms/language> <http://publications.europa.eu/resource/authority/language/CES>;
+    <http://purl.org/dc/terms/conformsTo> <https://data.cssz.cz/dump/ciselnik-druhu-akci-v-tiskopise-onz-vocabulary.trig>;
+    <https://data.gov.cz/slovník/podmínky-užití/specifikace> <https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66/distribuce/b5163aa22ae8f92c9960bc6816a6a993/podmínky-užití> .
+  
+  <https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66/distribuce/b5163aa22ae8f92c9960bc6816a6a993/podmínky-užití>
+    a <https://data.gov.cz/slovník/podmínky-užití/Specifikace>;
+    <https://data.gov.cz/slovník/podmínky-užití/autorské-dílo> <https://data.gov.cz/podmínky-užití/neobsahuje-autorská-díla/>;
+    <https://data.gov.cz/slovník/podmínky-užití/databáze-jako-autorské-dílo> <https://data.gov.cz/podmínky-užití/není-autorskoprávně-chráněnou-databází/>;
+    <https://data.gov.cz/slovník/podmínky-užití/databáze-chráněná-zvláštními-právy> <https://data.gov.cz/podmínky-užití/není-chráněna-zvláštním-právem-pořizovatele-databáze/>;
+    <https://data.gov.cz/slovník/podmínky-užití/osobní-údaje> <https://data.gov.cz/podmínky-užití/neobsahuje-osobní-údaje/> .
+}
