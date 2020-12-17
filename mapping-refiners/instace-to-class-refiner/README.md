@@ -20,7 +20,7 @@ to all entities on the other side of the edge.
 
 ## Output
 - Format: [JSON Lines](https://jsonlines.org/)
-- Contents: Dataset metadata: id, title, description, keywords.
+- Contents: Metadata with mappings.
 - Sample: [Output sample](output-sample/mapping.json)
 
 ## Configuration

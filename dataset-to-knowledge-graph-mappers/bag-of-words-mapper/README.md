@@ -8,18 +8,18 @@ Map entities from a knowledge graph to dataset properties.
 
 ### Datasets
 - Format: [JSON Lines](https://jsonlines.org/) file.
-- Contents: Content of https://dumps.wikimedia.org/other/wikidata/ dump JSON file.
+- Contents: Dataset metadata.
 - Sample: [Input sample](input-sample/dataset.json)
 
 ### Knowledge graph labels
 - Format: [JSON](https://www.json.org/) files.
-- Contents: Content of https://dumps.wikimedia.org/other/wikidata/ dump JSON file.
+- Contents: Knowledge graph hierarchy.
 - Sample: [Input sample](input-sample/labels.jsonl)
 
 ## Output
 - Format: [JSON](https://www.json.org/) files.
-- Contents: Knowledge graph entity metadata.
-- Sample: [Output sample](output-sample/dataset.json)
+- Contents: Mapping of datasets metadata into knowledge graph.
+- Sample: [Output sample](output-sample/mapping.json)
 
 ## Configuration
 - ```datasets``` - Path to datasets metadata file
@@ -34,7 +34,7 @@ Map entities from a knowledge graph to dataset properties.
 python map-bag-of-words.py \
     --datasets ./input-sample/datasets.jsonl \
     --knowledge-graph ./input-sample/labels.jsonl \
-    --output ./mapping.jsonl \
+    --output ./output \
     --mapping title:title_mapping \
     --mapping description:description_mapping
 ```

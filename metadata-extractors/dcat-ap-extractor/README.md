@@ -1,12 +1,14 @@
 # DCAT-AP Extractor
-Extracts title, description and keywords from [NKOD](https://data.gov.cz).
+Extracts title, description and keywords from 
+[DCAT-AP](https://joinup.ec.europa.eu/collection/semantic-interoperability-community-semic/solution/dcat-application-profile-data-portals-europe)  
+metadata.
 
 ## Requirements
 - Python 3.9
 
 ## Input
 - Format: [RDF TriG](https://www.w3.org/TR/trig/) file.
-- Contents: Dump of DCAT-AP compatible catalog, e.g. http://data.gov.cz/soubor/nkod.trig.
+- Contents: Dump of DCAT-AP compatible catalog, e.g. [Czech Open Data Catalog](http://data.gov.cz/soubor/nkod.trig).
 - Sample: [Input sample](input-sample/nkod.trig)
 
 ## Output
@@ -23,5 +25,5 @@ Extracts title, description and keywords from [NKOD](https://data.gov.cz).
 ```shell
 python extract-dcat-ap.py \
     --input input-sample/nkod.trig \
-    --output ./datasets.jsonl
+    --output ./output
 ```
