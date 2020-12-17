@@ -1,0 +1,29 @@
+{
+  "@id": "https://data.gov.cz/zdroj/datové-sady/Bohumin/111568827",
+  "title_mapping": [
+    {
+      "metadata": {
+        "from": "title",
+        "input": ["meteostanice", "hrudickova"]
+      },
+      "data": [
+        {
+          "id": "Q4167410",
+          "metadata": {
+            "group": [
+              "meteostanice"
+            ]
+          }
+        },
+        {
+          "id": "Q416",
+          "metadata": {
+            "group": [
+              "hrudickova"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
