@@ -1,0 +1,29 @@
+[
+  {
+    "aliases": {
+      "en": [
+        {
+          "language": "en",
+          "value": "Kingdom of Belgium"
+        },
+        {
+          "language": "en",
+          "value": "be"
+        }
+      ]
+    },
+    "descriptions": {
+      "en": {
+        "language": "en",
+        "value": "federal constitutional monarchy in Western Europe"
+      }
+    },
+    "id": "Q31",
+    "labels": {
+      "en": {
+        "language": "en",
+        "value": "Belgium"
+      }
+    }
+  }
+]
