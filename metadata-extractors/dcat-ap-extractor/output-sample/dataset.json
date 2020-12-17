@@ -1,0 +1,8 @@
+{
+  "@id": "https://data.gov.cz/zdroj/datové-sady/Bohumin/111568827",
+  "title": "Meteostanice",
+  "description": "Naměřená data z meteostanice umístěné na střeše bohumínské radnice.",
+  "keyword": [
+    "Meteostanice, počasí, tlak, srážky, vlhkost, směr větru, síla větru."
+  ]
+}
