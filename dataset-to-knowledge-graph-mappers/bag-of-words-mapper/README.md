@@ -26,6 +26,7 @@ Map entities from a knowledge graph to dataset properties.
 - ```input``` - Path to input file.
 - ```output``` - Path to output file.
 - ```mapping``` - ```{source}:{target}``` property name pairs.
+- ```knowledge-graph``` - Path to knowledge graph data.
 
 ## Execution
 [Script](script)

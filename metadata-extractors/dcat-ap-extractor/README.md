@@ -14,6 +14,10 @@ Extracts title, description and keywords from [NKOD](https://data.gov.cz).
 - Contents: Dataset metadata: id, title, description, keywords.
 - Sample: [Output sample](output-sample/datasets.jsonl)
 
+## Configuration
+- ```input``` - Path to input file.
+- ```output``` - Path to output file.
+
 ## Execution
 [Script](script)
 ```shell
