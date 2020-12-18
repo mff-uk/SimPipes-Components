@@ -7,12 +7,12 @@ Map entities from a knowledge graph to dataset properties.
 ## Inputs
 
 ### Datasets
-- Format: [JSON Lines](https://jsonlines.org/) file.
+- Format: [JSON](https://www.json.org/) files.
 - Contents: Dataset metadata.
 - Sample: [Input sample](input-sample/dataset.json)
 
 ### Knowledge graph labels
-- Format: [JSON](https://www.json.org/) files.
+- Format: [JSON Lines](https://jsonlines.org/) file.
 - Contents: Knowledge graph hierarchy.
 - Sample: [Input sample](input-sample/labels.jsonl)
 
@@ -23,10 +23,9 @@ Map entities from a knowledge graph to dataset properties.
 
 ## Configuration
 - ```datasets``` - Path to datasets metadata file
-- ```input``` - Path to input file.
+- ```knowledge-graph``` - Path to knowledge graph data.
 - ```output``` - Path to output file.
 - ```mapping``` - ```{source}:{target}``` property name pairs.
-- ```knowledge-graph``` - Path to knowledge graph data.
 
 ## Execution
 [Script](script)
