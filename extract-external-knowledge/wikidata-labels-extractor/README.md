@@ -1,5 +1,9 @@
 # Wikidata Labels Extractor
-Extracts label and aliases for given language from Wikidata.
+Each [Wikidata](https://www.wikidata.org/) entity is identified using an entity
+ID. Optionally each entity can have a label per language. In addition, each
+entity can have one or mode aliases in each language. This script can be used
+to extract label and aliases in given language from a Wikidata 
+JSON [dump](https://dumps.wikimedia.org/other/wikidata/20181217.json.gz).
 
 ## Requirements
 - Python 3.9
@@ -11,19 +15,14 @@ Extracts label and aliases for given language from Wikidata.
 
 ## Output
 - Format: [JSON Lines](https://jsonlines.org/) file.
-- Contents: Knowledge graph entity metadata.
+- Contents: Knowledge graph entity labels.
 - Sample: [Output sample](output-sample/labels.jsonl)
-
-## Configuration
-- ```language``` - Extract metadata for given language.
-- ```input``` - Path to input file.
-- ```output``` - Path to output file.
 
 ## Execution
 [Script](script)
 ```shell
-python extract-wikidata-labels.py \
+python3 wikidata-labels-extractor \
     --language cs \
     --input ./input-sample/wikidata.json \
-    --output ./labels.jsonl
+    --output ./output/labels.jsonl
 ```
