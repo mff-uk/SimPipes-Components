@@ -1,18 +1,3 @@
 [
-  {
-    "id": "Q31",
-    "claims": {
-      "P31": {
-        "mainsnak": {
-          "datavalue": {
-            "type": "wikibase-entityid",
-            "value": {
-              "entity-type": "item",
-              "id": "Q3624078"
-            }
-          }
-        }
-      }
-    }
-  }
+{"id": "Q31","claims": {"P31": {"mainsnak": {"datavalue": {"type": "wikibase-entityid","value": {"entity-type": "item","id": "Q3624078"}}}}}}
 ]

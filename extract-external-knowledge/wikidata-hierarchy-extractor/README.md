@@ -1,6 +1,13 @@
 # Wikidata Hierarchy Extractor
-Extracts hierarchy from Wikidata. Use ```P31``` as ```instanceOf``` and 
-```P279``` as ```subclassOf```. 
+Each [Wikidata](https://www.wikidata.org/) entity is identified using an entity
+ID. Optionally each entity can have multiple snacks/annotations. Those may 
+represent a connection/relation to another Wikidata entity. We consider these
+annotations to be edges in the Wikidata knowledge graph. This component can be
+used extract ```P31``` as ```instanceOf``` and ```P279``` as ```subclassOf```
+edges from a Wikidata JSON 
+[dump](https://dumps.wikimedia.org/other/wikidata/20181217.json.gz).
+
+Extracts hierarchy from Wikidata. Use . 
 
 ## Requirements
 - Python 3.9
@@ -12,17 +19,13 @@ Extracts hierarchy from Wikidata. Use ```P31``` as ```instanceOf``` and
 
 ## Output
 - Format: [JSON Lines](https://jsonlines.org/) file.
-- Contents: Knowledge graph hierarchy.
+- Contents: Knowledge graph entity outcoming annotations/edges.
 - Sample: [Output sample](output-sample/hierarchy.jsonl)
-
-## Configuration
-- ```input``` - Path to input file.
-- ```output``` - Path to output file.
 
 ## Execution
 [Script](script)
 ```shell
-python extract-wikidata-hierarchy.py \
-    --input ./input-sample/hierarchy.json \
-    --output ./hiearchy.jsonl
+python3 wikidata-hierarchy-extractor.py \
+    --input ./input-sample/wikidata.json \
+    --output ./output/hiearchy.jsonl
 ```
