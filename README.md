@@ -14,4 +14,4 @@ The repository is structured according to conceptual component types:
   - [Compute similarities](processors/compute-similarities)
   - Multimodal fusion (empty at the moment)
   - [Map dataset to knowledge](processors/map-dataset-to-knowledge)
-- Presenters (empty at the moment)
+- [Presenters](presenters) (empty at the moment)
