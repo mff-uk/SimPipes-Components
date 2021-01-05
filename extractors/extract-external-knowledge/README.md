@@ -1,5 +1,5 @@
 # Extract external knowledge
-*Extract external knowledge* represents a component performing
+*Extract external knowledge* represents components performing
 
 <code><i>extract</i><sub><i>k</i></sub>(KnowledgeSource): Knowledge<sup>*</sup></code>
 

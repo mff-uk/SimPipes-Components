@@ -5,6 +5,6 @@ The folder is structured according to processor types:
 - [Refine descriptor](refine-descriptor)
 - [Refine external knowledge](refine-external-knowledge) (empty at the moment)
 - [Refine mapping](refine-mapping)
-- [Compute similarities](compute-similarities)
+- [Compute similarity](compute-similarity)
 - [Fuse similarities](fuse-similarities) (empty at the moment)
 - [Map dataset to knowledge](map-dataset-to-knowledge)

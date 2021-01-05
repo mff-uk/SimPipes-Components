@@ -1,5 +1,5 @@
 # Extract content descriptor
-*Extract content descriptor* represents a component performing
+*Extract content descriptor* represents components performing
 
 <code><i>extract</i><sub><i>desc</i></sub>(DatasetSource,Metadata<sup>+</sup>): Descriptor<sup>+</sup></code>
 
