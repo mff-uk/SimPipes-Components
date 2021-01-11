@@ -20,6 +20,10 @@ edges from a Wikidata JSON
 - Contents: Knowledge graph entity outcoming annotations/edges.
 - Sample: [Output sample](output-sample/hierarchy.jsonl)
 
+## Configuration
+- ```input``` - Path to Wikidata JSON dump file.
+- ```output``` - Path to output file.
+
 ## Execution
 [Script](script)
 ```shell

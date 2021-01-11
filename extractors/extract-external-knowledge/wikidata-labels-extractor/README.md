@@ -18,6 +18,11 @@ JSON [dump](https://dumps.wikimedia.org/other/wikidata/20181217.json.gz).
 - Contents: Knowledge graph entity labels.
 - Sample: [Output sample](output-sample/labels.jsonl)
 
+## Configuration
+- ```input``` - Path to Wikidata JSON dump file.
+- ```output``` - Path to output file.
+- ```language``` - Language to extract.
+
 ## Execution
 [Script](script)
 ```shell

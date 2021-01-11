@@ -9,7 +9,7 @@ vocabulary.
 The extracted metadata are stored in JSON files, one dataset per file.
  
 ## Requirements
-- Python 3.9
+- Python 3.8
 - Libraries as specified in ```requirements.txt```. 
 
 ## Input
@@ -21,7 +21,11 @@ The extracted metadata are stored in JSON files, one dataset per file.
 ## Output
 - Format: Directory of [JSON](https://www.json.org/) files.
 - Contents: Dataset descriptors: iri as @id, title, description, keywords.
-- Sample: [Output sample](output-sample/datasets.jsonl)
+- Sample: [Output sample](output-sample/)
+
+## Configuration
+- ```input``` - Path to DCAT-AP TRIG dump file.
+- ```output``` - Path to output file.
 
 ## Execution
 [Script](script)

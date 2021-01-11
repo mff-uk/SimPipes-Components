@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#
-# Transform TRIG file into JSON-LINES.
-#
 
 import argparse
 import collections
@@ -25,17 +22,18 @@ def _parse_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", required=True,
                         help="Path to DCAT-AP compatible TRIG.")
-    parser.add_argument("--output", required=False,
+    parser.add_argument("--output", required=True,
                         help="Path to output directory.")
     return vars(parser.parse_args())
 
 
 def main(arguments):
     _init_logging()
-    if not os.path.exists(arguments["output"]):
-        os.makedirs(arguments["output"], exist_ok=True)
+    _create_parent_directory(arguments["output"])
     dcat_ap_trig_to_json(arguments["input"], arguments["output"])
 
+
+# region Utils
 
 def _init_logging() -> None:
     logging.basicConfig(
@@ -44,7 +42,17 @@ def _init_logging() -> None:
         datefmt="%m/%d/%Y %H:%M:%S")
 
 
-def dcat_ap_trig_to_json(source_file, target_directory):
+def _create_parent_directory(path: str) -> None:
+    directory = os.path.dirname(path)
+    if directory == "" or directory == "." or directory == "..":
+        return
+    os.makedirs(directory, exist_ok=True)
+
+
+# endregion
+
+
+def dcat_ap_trig_to_json(source_file: str, target_directory: str) -> None:
     for index, rdf_as_str in enumerate(_for_each_graph(source_file)):
         graph = rdflib.Graph()
         graph.parse(data=rdf_as_str, format="trig")
@@ -58,7 +66,7 @@ def dcat_ap_trig_to_json(source_file, target_directory):
             json.dump(dataset, output_stream)
 
 
-def _for_each_graph(file):
+def _for_each_graph(file: str):
     with open(file, "r", encoding="utf-8") as input_stream:
         buffer = ""
         for line in input_stream:
