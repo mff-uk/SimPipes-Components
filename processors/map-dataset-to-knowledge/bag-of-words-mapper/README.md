@@ -1,15 +1,18 @@
 # Bag of Words Mapper
-Map entities from a knowledge graph to dataset properties.
-
+Map values of datasets properties into entities of external knowledge.
+The mapping utilizes textual values that are converted into bag of words.
+The mapping is created if the knowledge entity bag of words share more than 
+given percentage of words with the bag of words of the dataset property.  
+ 
 ## Requirements
-- Python 3.9
+- Python 3.8
 
 ## Inputs
 
 ### Datasets
-- Format: [JSON](https://www.json.org/) files.
+- Format: Directory of [JSON](https://www.json.org/) files.
 - Contents: Dataset metadata.
-- Sample: [Input sample](input-sample/dataset.json)
+- Sample: [Input sample](input-sample/dataset/)
 
 ### Knowledge graph labels
 - Format: [JSON Lines](https://jsonlines.org/) file.
@@ -17,23 +20,27 @@ Map entities from a knowledge graph to dataset properties.
 - Sample: [Input sample](input-sample/labels.jsonl)
 
 ## Output
-- Format: [JSON](https://www.json.org/) files.
+- Format: Directory of [JSON](https://www.json.org/) files.
 - Contents: Mapping of datasets metadata into knowledge graph.
 - Sample: [Output sample](output-sample/mapping.json)
 
 ## Configuration
-- ```datasets``` - Path to datasets metadata file
-- ```knowledge-graph``` - Path to knowledge graph data.
+- ```input``` - Path to datasets descriptor files.
+- ```entities``` - Path to knowledge graph labels data file.
 - ```output``` - Path to output file.
-- ```mapping``` - ```{source}:{target}``` property name pairs.
+- ```sourceProperty``` - Name of property to load values from mapping from.
+- ```targetProperty``` - Name of property to save mappings into.
+- ```sharedThreshold``` - How many of the words must be shared in order to 
+                          create a mapping.
 
 ## Execution
 [Script](script)
 ```shell
-python map-bag-of-words.py \
-    --datasets ./input-sample/datasets.jsonl \
-    --knowledge-graph ./input-sample/labels.jsonl \
+python3 map-bag-of-words.py \
+    --input ./input-sample/datasets/ \
+    --entities ./input-sample/labels.jsonl \
     --output ./output \
-    --mapping title:title_mapping \
-    --mapping description:description_mapping
+    --sourceProperty title \
+    --targetProperty title_mapping \
+    --sharedThreshold 0.66
 ```
