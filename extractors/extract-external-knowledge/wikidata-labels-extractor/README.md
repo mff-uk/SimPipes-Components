@@ -6,7 +6,7 @@ to extract label and aliases in given language from a Wikidata
 JSON [dump](https://dumps.wikimedia.org/other/wikidata/20181217.json.gz).
 
 ## Requirements
-- Python 3.9
+- Python 3.8
 
 ## Input
 - Format: [JSON](https://www.json.org/) file.
@@ -21,8 +21,8 @@ JSON [dump](https://dumps.wikimedia.org/other/wikidata/20181217.json.gz).
 ## Execution
 [Script](script)
 ```shell
-python3 wikidata-labels-extractor \
-    --language cs \
+python3 wikidata-labels-extractor.py \
     --input ./input-sample/wikidata.json \
-    --output ./output/labels.jsonl
+    --output ./output/labels.jsonl \
+    --language cs
 ```
