@@ -34,12 +34,19 @@ does not contain IRIs of the datasets.
 ### Datasets
 - Format: Directory of [JSON](https://www.json.org/) files.
 - Contents: Dataset metadata with iri, title, description, keywords.
-- Sample: [Output sample](output-sample/datasets.jsonl)
+- Sample: [Input sample](input-sample/datasets/)
 
 ### Similarity
-- Format: [JSON](https://www.json.org/) files.
-- Contents: Dataset similarity matrix and CSV with dataset's IRIs.
-- Sample: [Output sample](output-sample/datasets.jsonl)
+- Format: [CSV](https://tools.ietf.org/html/rfc4180) files.
+- Contents: Dataset similarity matrix and CSV with datasets IRIs.
+- Sample: [Similarity matrix](input-sample/dataset-similarity.csv), 
+          [Dataset IRI](input-sample/file-with-iri.csv)
+
+## Configuration
+- ```datasets``` - Path to datasets metadata file
+- ```knowledge-graph``` - Path to knowledge graph data.
+- ```output``` - Path to output file.
+- ```mapping``` - ```{source}:{target}``` property name pairs.
 
 ## Execution
 [Script](script)
