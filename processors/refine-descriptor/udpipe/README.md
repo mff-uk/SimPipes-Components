@@ -31,7 +31,7 @@ Preprocess text descriptor by lemmatizer UDPipe using pretrained model.
 ## Configuration
 
 - `-i`, `--in`, `--input` - path to CSV file containing descriptors
-- `--input-header` - determines if CSV file with descriptors has header
+- `--header` - determines if CSV file with descriptors has header
 - `-m`, `--model` - path to UDPipe model
 - `-f`, `--filter` - filter only nouns, verbs, adjectives and adverbs
 - `-o`, `--out`, `--output` - path to output file
