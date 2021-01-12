@@ -39,9 +39,10 @@ Computes distance matrix for specified descriptor and similarity/distance measur
     - `tlsh` - expect 2 columns, and perform TLSH hashing
 - `-d`, `--dist`, `--distance` - distance measure
     - `levenshtein` - (type = `string`) Levenshtein distance
-    - `jaccard` - (type = `set`, `words_set`) Jaccard distance
-    - `angle` - (type = `vector`, `words_count`) Angular distance
-    - `cosine` - (type = `vector`, `words_count`) Cosine distance
+    - `jaccard` - (type = `set` or `words_set`) Jaccard distance
+    - `angle` - (type = `vector` or `words_count`) Angular distance
+    - `cosine` - (type = `words_count`) Cosine distance
+    - `cosine_v` - (type = `vector`) Cosine distance
     - `tlsh` - (type = `tlsh`) TLSH distance (based on locally sensitive hashing)
 - `-o`, `--out`, `--output` - path to output file
 - `--rewrite` - rewrite existing output CSV file

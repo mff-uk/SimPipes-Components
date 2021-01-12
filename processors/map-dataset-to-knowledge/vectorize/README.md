@@ -42,7 +42,7 @@ Converts text into average vector of provided Word2Vec embedding.
 
 [Script](script)
 ```shell
-python reduce.py \
+python vectorize.py \
   -i input-sample/nkod-title.udpipe-f.reduce.csv \
   -m input-sample/law.word2vec \
   -o output-sample/nkod-title.udpipe-f.reduce.word2vec[law].csv
