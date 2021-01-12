@@ -81,7 +81,7 @@ def _values_to_list(values) -> typing.List[str]:
     values_as_list = values if isinstance(values, list) else [values]
     result = []
     for item in values_as_list:
-        if not isinstance(item, object):
+        if not isinstance(item, dict):
             result.append(item)
             continue
         # It is an object.
@@ -91,8 +91,7 @@ def _values_to_list(values) -> typing.List[str]:
         if "@id" in item:
             result.append(item["@id"])
             continue
-        print(item)
-        raise Exception("Can't convert an object to CSV root.")
+        raise Exception("Can't convert an object to CSV.")
     return result
 
 
