@@ -33,7 +33,7 @@ For the given example the output looks like this:
 
 ## Input
 - Format: Directory of [JSON](https://www.json.org/) files.
-- Contents: Dataset metadata with iri, title, description, keywords.
+- Contents: Dataset descriptor.
 - Sample: [Input sample](input-sample/datasets)
 
 ## Output

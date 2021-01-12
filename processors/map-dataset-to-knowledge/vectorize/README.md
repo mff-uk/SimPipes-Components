@@ -6,7 +6,7 @@ Converts text into average vector of provided Word2Vec embedding.
 
 - Python 3.9
     - `numpy`
-    - `json`w
+    - `json`
     - `tqdm`
     - `gensim.models`
 
