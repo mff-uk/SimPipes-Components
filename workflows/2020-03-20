@@ -1,0 +1,18 @@
+# Load datasets from the original framework manuscript and convert the title, description and keywords
+# to english. As the last step export the values into CSV files.
+
+DATASET = https://zenodo.org/record/4433464/files/2020.04.20-data.gov.cz-no-cuzk.trig?download=1
+DIR = ./data/2020-03-20
+PYTHON = python3
+
+all: data/shared/2020.04.20.trig
+	mkdir -p $(DIR)/datasets
+	$(PYTHON) ../extractors/extract-metadata-descriptor/dcat-ap-extractor/dcat-ap-extractor.py --input ./data/shared/2020.04.20.trig --language cs --output $(DIR)/datasets
+	$(PYTHON) ../processors/refine-descriptor/translate-json/translate-json.py --input $(DIR)/datasets --output $(DIR)/datasets --sourceProperty title-cs description-cs keywords-cs --targetProperty title-en description-en keywords-en --sourceLanguage cs --targetLanguage en --join
+	$(PYTHON) ../processors/refine-descriptor/json-to-csv/json-to-csv.py --input $(DIR)/datasets --output $(DIR)/titles-en.csv --property title-en
+	$(PYTHON) ../processors/refine-descriptor/json-to-csv/json-to-csv.py --input $(DIR)/datasets --output $(DIR)/description-en.csv --property description-en
+	$(PYTHON) ../processors/refine-descriptor/json-to-csv/json-to-csv.py --input $(DIR)/datasets --output $(DIR)/keywords-en.csv --property keywords-en --linePerValue
+
+data/shared/2020.04.20.trig:
+	mkdir -p ./data/shared
+	wget "$(DATASET)" -O ./data/shared/2020.04.20.trig
