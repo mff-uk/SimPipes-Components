@@ -166,13 +166,13 @@ def dcat_ap_trig_to_json(
 def _for_each_graph(file: str):
     with open(file, "r", encoding="utf-8") as input_stream:
         buffer = ""
-        multiline_escape = False
+        multiline_escape = 0
         for line in input_stream:
             strip_line = line.rstrip()
-            if '"""' in strip_line:
-                multiline_escape = not multiline_escape
+            multiline_escape += strip_line.count('"""')
+            multiline_escape %= 2
             #
-            if multiline_escape:
+            if multiline_escape == 1:
                 buffer += line
             elif strip_line.startswith("<") and strip_line.endswith("> {"):
                 buffer = ""
