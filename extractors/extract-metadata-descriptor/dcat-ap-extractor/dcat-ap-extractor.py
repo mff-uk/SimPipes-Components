@@ -184,10 +184,4 @@ def _for_each_graph(file: str):
 
 
 if __name__ == "__main__":
-    # main(_parse_arguments())
-    main({
-        "input": "2021-05-30-small.trig",
-        "output": "2021-05-30",
-        "format": "trig",
-        "language": ["en"]
-    })
+    main(_parse_arguments())
