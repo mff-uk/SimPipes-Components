@@ -166,9 +166,15 @@ def dcat_ap_trig_to_json(
 def _for_each_graph(file: str):
     with open(file, "r", encoding="utf-8") as input_stream:
         buffer = ""
+        multiline_escape = False
         for line in input_stream:
             strip_line = line.rstrip()
-            if strip_line.startswith("<") and strip_line.endswith("> {"):
+            if '"""' in strip_line:
+                multiline_escape = not multiline_escape
+            #
+            if multiline_escape:
+                buffer += line
+            elif strip_line.startswith("<") and strip_line.endswith("> {"):
                 buffer = ""
             elif strip_line == "}":
                 yield buffer
@@ -178,4 +184,10 @@ def _for_each_graph(file: str):
 
 
 if __name__ == "__main__":
-    main(_parse_arguments())
+    # main(_parse_arguments())
+    main({
+        "input": "2021-05-30-small.trig",
+        "output": "2021-05-30",
+        "format": "trig",
+        "language": ["en"]
+    })
