@@ -1,1 +1,28 @@
-{"iri": "https://data.gov.cz/zdroj/datov\u00e9-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66", "title": "\u010c\u00edseln\u00edk druh\u016f akc\u00ed v tiskopise Ozn\u00e1men\u00ed o n\u00e1stupu do zam\u011bstn\u00e1n\u00ed", "description": "\u010c\u00edseln\u00edk druh\u016f akc\u00ed ONZ, kter\u00fd slou\u017e\u00ed jako podpora pro vypl\u0148ov\u00e1n\u00ed hodnot v tiskopisech", "keywords": ["\u010d\u00edseln\u00edk"]}
+{
+  "iri": "https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66",
+  "publisher": {
+    "data": [
+      "https://data.gov.cz/zdroj/ovm/00006963"
+    ]
+  },
+  "themes": {
+    "data": [
+      "http://publications.europa.eu/resource/authority/data-theme/GOVE"
+    ]
+  },
+  "title-cs": {
+    "data": [
+      "Číselník druhů akcí v tiskopise Oznámení o nástupu do zaměstnání"
+    ]
+  },
+  "description-cs": {
+    "data": [
+      "Číselník druhů akcí ONZ, který slouží jako podpora pro vyplňování hodnot v tiskopisech"
+    ]
+  },
+  "keywords-cs": {
+    "data": [
+      "číselník"
+    ]
+  }
+}

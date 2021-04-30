@@ -24,13 +24,13 @@ The extracted metadata are stored in JSON files, one dataset per file.
 - Sample: [Output sample](output-sample/)
 
 ## Configuration
-- ```input``` - Path to DCAT-AP TRIG dump file.
-- ```output``` - Path to output file.
+- ```input``` - Path to DCAT-AP TRIG/N3 dump file.
+- ```output``` - Path to existing output directory.
+- ```format``` - Optional, input file format.
+- ```language``` - Languages to extract, use language tags. Multiple languages can be provided.
 
 ## Execution
 [Script](script)
 ```shell
-python3 dcat-ap-extractor.py \
-    --input ./input-sample/nkod.trig \
-    --output ./output
+python dcat-ap-extractor.py --input ./input-sample/nkod.trig --output ./output-sample --language cs
 ```

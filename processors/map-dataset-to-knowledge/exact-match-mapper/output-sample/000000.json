@@ -1,0 +1,65 @@
+{
+  "@id": "https://data.gov.cz/zdroj/datové-sady/Bohumin/111568827",
+  "description": {
+    "data": [
+      [
+        "Naměřená",
+        "data",
+        "z",
+        "meteostanice"
+      ]
+    ]
+  },
+  "keywords": {
+    "data": [
+      "Meteostanice",
+      [
+        "počasí",
+        "i",
+        "dneska"
+      ]
+    ]
+  },
+  "description_mapped": {
+    "data": [
+      [
+        {
+          "id": "Q1",
+          "metadata": {
+            "shared_tokens": [
+              "z",
+              "meteostanice"
+            ]
+          }
+        }
+      ]
+    ],
+    "metadata": [
+      {
+        "transformer": "exact-match-mapper.py",
+        "from": "description"
+      }
+    ]
+  },
+  "keywords_mapped": {
+    "data": [
+      [],
+      [
+        {
+          "id": "Q4",
+          "metadata": {
+            "shared_tokens": [
+              "počasí"
+            ]
+          }
+        }
+      ]
+    ],
+    "metadata": [
+      {
+        "transformer": "exact-match-mapper.py",
+        "from": "keywords"
+      }
+    ]
+  }
+}

@@ -2,12 +2,13 @@
   "@id": "https://data.gov.cz/zdroj/datové-sady/Bohumin/111568827",
   "description": {
     "data": [
-      [
-        "Naměřená",
-        "data",
-        "z",
-        "meteostanice"
-      ]
+        "Naměřená data z meteostanice",
+        [
+          "Naměřená",
+          "data",
+          "z",
+          "meteostanice"
+        ]
     ]
   },
   "keywords": {

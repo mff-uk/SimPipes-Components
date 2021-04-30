@@ -10,15 +10,6 @@ import itertools
 import collections
 import shutil
 
-# For example "-" can be used to map to: Q11879093 or Q10689378, with "-"
-# as the only shared term. While we allow "-" to be used as a shared term it
-# must not be the only shared term. For this reason the "-" can not be removed
-# from the data during pre-processing.
-# Similar idea apply to all values in this list.
-INVALID_STANDALONE_MAPPING_TOKENS = {
-    "(", ")", ".", "?", "!", "-", ",", "}", "{"
-}
-
 
 def _parse_arguments():
     parser = argparse.ArgumentParser()
@@ -32,8 +23,6 @@ def _parse_arguments():
                         help="Name of a source property to transform.")
     parser.add_argument("--targetProperty", required=True, nargs="+",
                         help="Name of a property to store result into.")
-    parser.add_argument("--sharedThreshold", type=float, default=0.6,
-                        help="How many of entity tokens must be shared.")
     parser.add_argument("--normalize", default=False, action="store_true",
                         help="Normalize tokes before mapping.")
     return vars(parser.parse_args())
@@ -62,13 +51,11 @@ def create_mapping(arguments):
                 target_prop,
                 content,
                 {
-                    "transformer": "bag-of-words-mapper",
+                    "transformer": "exact-match-mapper.py",
                     "from": source_prop,
-                    "threshold": arguments["sharedThreshold"],
                 },
                 lambda values: _mapping_function(
-                    token_to_entity, values,
-                    arguments["sharedThreshold"], arguments["normalize"]))
+                    token_to_entity, values, arguments["normalize"]))
         return content
 
     _transform_files(arguments["input"], arguments["output"], file_transformer)
@@ -148,59 +135,55 @@ def _load_knowledge(
 
 
 def _mapping_function(
-        token_to_entity: dict, values,
-        shared_threshold: float, normalize: bool):
+        token_to_entity: dict, values, normalize: bool):
     """
     This method take as an input either array of tokens or single string.
-
-    We only require the tokens to be in the given text, for
-    entity "A B C" and text "0 A B C 1" we got match, but also
-    with "0 A 1 B 2 C" or "C B A".
     """
     normalizer = _create_normalize(normalize)
-    tokens = {normalizer(value) for value in _tokenize(values)}
+    tokens = [normalizer(value) for value in _tokenize(values)]
     result = []
     # Found all entities that takes part in the text.
     resolved_entities = {}
-    for token in tokens:
-        if token in INVALID_STANDALONE_MAPPING_TOKENS:
-            continue
+    for token in set(tokens):
         for entity in token_to_entity.get(token, []):
             resolved_entities[entity["@id"]] = entity
     # As we do not know it the entity tokens are from label or alias
     # we need to try for each entity.
     for entity in resolved_entities.values():
-        mapping = _token_set_to_entity_mapping(
-            tokens, entity, shared_threshold)
+        mapping = _token_set_to_entity_mapping(tokens, entity)
         if mapping is not None:
             result.append(mapping)
     return result
 
 
-def _token_set_to_entity_mapping(
-        tokens: set[str], entity, shared_threshold: float
-) -> typing.Optional:
-    best_shared = 0
+def _token_set_to_entity_mapping(tokens: list[str], entity) -> typing.Optional:
     best_shared_tokens = []
     for entity_tokens in entity["tokens"]:
-        entity_tokens_set = set(entity_tokens)
-        shared_tokens = tokens & entity_tokens_set
-        shared = len(shared_tokens) / len(entity_tokens_set)
-        if shared < shared_threshold:
+        if not _is_sub_array(tokens, entity_tokens):
             continue
-        if shared < best_shared:
-            continue
-        best_shared = shared
-        best_shared_tokens = shared_tokens
-    if best_shared == 0:
+        if len(entity_tokens) > len(best_shared_tokens):
+            best_shared_tokens = entity_tokens
+    if len(best_shared_tokens) == 0:
         return None
     return {
         "id": entity["@id"],
         "metadata": {
-            "shared": best_shared,
+            # We add this as there can be multiple values for an entity.
             "shared_tokens": list(best_shared_tokens)
         }
     }
+
+
+def _is_sub_array(tokens: list[str], entity_tokens: list[str]) -> bool:
+    entity_index = 0
+    for token in tokens:
+        if token == entity_tokens[entity_index]:
+            entity_index += 1
+            if entity_index == len(entity_tokens):
+                return True
+        else:
+            entity_index = 0
+    return False
 
 
 # region Knowledge graph

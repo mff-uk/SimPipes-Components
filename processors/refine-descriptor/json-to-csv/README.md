@@ -28,6 +28,9 @@ For the given example the output looks like this:
 "dataset-iri", "second"
 ```
 
+If the value is tokenized it is joined into a string using space before it 
+is exported.
+
 ## Requirements
 - Python 3.8
 
@@ -50,8 +53,9 @@ For the given example the output looks like this:
 ## Execution
 [Script](script)
 ```shell
-python3 json-to-csv.py \
-    --datasets ./input-sample/datasets \
-    --output ./output/output.csv \
-    --property title
+python json-to-csv.py --input ./input-sample/datasets --output ./output-sample/description.csv --property description
+```
+or
+```shell
+python json-to-csv.py --input ./input-sample/datasets --output ./output-sample/keywords.csv --property keywords --linePerValue
 ```

@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 import argparse
 import json
@@ -23,11 +22,8 @@ def _parse_arguments():
 
 def main(arguments):
     _init_logging()
-    _create_parent_directory(arguments["output"])
     extract_hierarchy(arguments["input"], arguments["output"])
 
-
-# region Utils
 
 def _init_logging() -> None:
     logging.basicConfig(
@@ -36,23 +32,13 @@ def _init_logging() -> None:
         datefmt="%m/%d/%Y %H:%M:%S")
 
 
-def _create_parent_directory(path: str) -> None:
-    directory = os.path.dirname(path)
-    if directory == "" or directory == "." or directory == "..":
-        return
-    os.makedirs(directory, exist_ok=True)
-
-
-# endregion
-
-
 def extract_hierarchy(source_file: str, output_file: str) -> None:
     with open(output_file, "w", encoding="utf-8") as stream:
         for content in _iterate_wikidata(source_file):
             result = _wikidata_to_entity(content)
             if result is None:
                 continue
-            json.dump(result, stream)
+            json.dump(result, stream, ensure_ascii=False)
             stream.write("\n")
 
 

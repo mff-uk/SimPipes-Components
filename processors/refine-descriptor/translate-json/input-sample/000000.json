@@ -1,26 +1,16 @@
 {
   "iri": "https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66",
-  "description": {
+  "title": {
     "data": [
-      [
-        "Ciselnik",
-        "druh",
-        "akce",
-        "v",
-        "tiskopis",
-        "oznameni",
-        "o",
-        "nastup",
-        "do",
-        "zamestnani"
-      ]
+      "Číselník druhů akcí v tiskopise Oznámení o nástupu do zaměstnání",
+      "Odborová organizace - Platný (České Budějovice - 2019)"
     ]
   },
   "keywords": {
     "data": [
       "číselník",
       [
-        "maličká",
+        "česká",
         "domovina"
       ]
     ]
