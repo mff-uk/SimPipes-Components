@@ -2,7 +2,7 @@
 # https://etl.opendata.cz/working/data/1619600412136-891-a01d1d32-987e-40e0-aab4-8eb09bbbe671/working/working-outputfiles-21/edp.trig
 # and convert it to CSV.
 
-DATASET = https://similant.opendata.cz/soubor/2021-05-30-edp.trig
+DATASET = https://odsim.opendata.cz/soubor/2021-05-30-edp.trig
 DIR = ./data/2021-05-30
 PYTHON = python3
 
