@@ -13,10 +13,10 @@ $(DIR_OUTPUT)/labels-cs.jsonl: $(DIR_SHARED)/20181217.json.gz
 	mkdir -p $(DIR_OUTPUT)
 
 	printf '[TIME] wikidata-labels-extractor.py %s\n' "$$(date --iso=seconds)"
-	$(PYTHON) ../extractors/extract-external-knowledge/wikidata-labels-extractor/wikidata-labels-extractor.py --input .$(DIR_SHARED)/20181217.json.gz --language cs --output $(DIR_OUTPUT)/labels-cs.jsonl
+	$(PYTHON) ../extractors/extract-external-knowledge/wikidata-labels-extractor/wikidata-labels-extractor.py --input $(DIR_SHARED)/20181217.json.gz --language cs --output $(DIR_OUTPUT)/labels-cs.jsonl
 
 	printf '[TIME] all done %s\n' "$$(date --iso=seconds)"
 
 $(DIR_SHARED)/20181217.json.gz:
 	mkdir -p ./data/shared
-	wget "$(WIKIDATA)" -O ./data/shared/20181217.json.gz
+	wget "$(WIKIDATA)" -O $(DIR_SHARED)/20181217.json.gz
