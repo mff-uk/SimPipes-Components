@@ -57,7 +57,7 @@ def _iterate_wikidata(input_file: str):
 
 def open_file(path: str):
     if path.endswith(".gz"):
-        return gzip.open(path, "r", encoding="utf-8")
+        return gzip.open(path, "rt", encoding="utf-8")
     else:
         return open(path, "r", encoding="utf-8")
 
