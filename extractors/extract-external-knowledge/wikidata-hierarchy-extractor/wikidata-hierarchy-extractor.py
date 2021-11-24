@@ -3,7 +3,7 @@
 import argparse
 import json
 import logging
-import os
+import gzip
 
 MAPPING = {
     "P31": "instanceOf",
@@ -43,7 +43,7 @@ def extract_hierarchy(source_file: str, output_file: str) -> None:
 
 
 def _iterate_wikidata(input_file: str):
-    with open(input_file, "r", encoding="utf-8") as stream:
+    with open_file(input_file) as stream:
         # Skip first line '['
         next(stream)
         for line in stream:
@@ -53,6 +53,13 @@ def _iterate_wikidata(input_file: str):
             if line.endswith(","):
                 line = line[:-1]
             yield json.loads(line)
+
+
+def open_file(path: str):
+    if path.endswith(".gz"):
+        return gzip.open(path, "r", encoding="utf-8")
+    else:
+        return open(path, "r", encoding="utf-8")
 
 
 def _wikidata_to_entity(wikidata):
