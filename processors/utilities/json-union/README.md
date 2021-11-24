@@ -11,7 +11,7 @@ at the end of another.
 - Sample: [Input sample](input-sample/datasets)
 
 ## Output
-- Format: [JSON Lines](https://jsonlines.org/)
+- Format: Directory of [JSON](https://www.json.org/) files.
 - Contents: Dataset descriptors.
 - Sample: [Output sample](output-sample/datasets)
 
