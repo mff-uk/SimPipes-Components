@@ -2,17 +2,31 @@
 # https://etl.opendata.cz/working/data/1619600412136-891-a01d1d32-987e-40e0-aab4-8eb09bbbe671/working/working-outputfiles-21/edp.trig
 # and convert it to CSV.
 
-DATASET = https://odsim.opendata.cz/soubor/2021-05-30.trig
-DIR = ./data/2021-05-30
+URL_DATASET = https://odsim.opendata.cz/soubor/2021-05-30.trig
+DIR_OUTPUT = ./data/2021-05-30
+DIR_SHARED = ./data/shared
+TIME_LOG_FILE = 2021-05-30.log
 PYTHON = python3
 
-all: data/shared/2021.05.30.trig
-	mkdir -p ./data/2021-05-30/datasets
-	$(PYTHON) ../extractors/extract-metadata-descriptor/dcat-ap-extractor/dcat-ap-extractor.py --input ./data/shared/2021.05.30.trig --language en --output $(DIR)/datasets
-	$(PYTHON) ../processors/refine-descriptor/json-to-csv/json-to-csv.py --input $(DIR)/datasets --output $(DIR)/titles-en.csv --property title-en
-	$(PYTHON) ../processors/refine-descriptor/json-to-csv/json-to-csv.py --input $(DIR)/datasets --output $(DIR)/description-en.csv --property description-en
-	$(PYTHON) ../processors/refine-descriptor/json-to-csv/json-to-csv.py --input $(DIR)/datasets --output $(DIR)/keywords-en.csv --property keywords-en --linePerValue
+all: $(DIR_OUTPUT)/datasets
 
-data/shared/2021.05.30.trig:
-	mkdir -p ./data/shared
-	wget "$(DATASET)" -O ./data/shared/2021.05.30.trig
+$(DIR_OUTPUT)/datasets: $(DIR_SHARED)/2021.05.30.trig
+	mkdir -p $(DIR_OUTPUT)/datasets
+
+	printf '[TIME] dcat-ap-extractor %s\n' "$$(date --iso=seconds)"
+	$(PYTHON) ../extractors/extract-metadata-descriptor/dcat-ap-extractor/dcat-ap-extractor.py --input $(DIR_SHARED)/2021.05.30.trig --language en --output $(DIR_OUTPUT)/datasets
+
+	printf '[TIME] json-to-csv.py %s\n' "$$(date --iso=seconds)"
+	$(PYTHON) ../processors/refine-descriptor/json-to-csv/json-to-csv.py --input $(DIR_OUTPUT)/datasets --output $(DIR_OUTPUT)/titles-en.csv --property title-en
+
+	printf '[TIME] json-to-csv.py %s\n' "$$(date --iso=seconds)"
+	$(PYTHON) ../processors/refine-descriptor/json-to-csv/json-to-csv.py --input $(DIR_OUTPUT)/datasets --output $(DIR_OUTPUT)/description-en.csv --property description-en
+
+	printf '[TIME] json-to-csv.py %s\n' "$$(date --iso=seconds)"
+	$(PYTHON) ../processors/refine-descriptor/json-to-csv/json-to-csv.py --input $(DIR_OUTPUT)/datasets --output $(DIR_OUTPUT)/keywords-en.csv --property keywords-en --linePerValue
+
+    printf '[TIME] all done %s\n' "$$(date --iso=seconds)"
+
+$(DIR_SHARED)/2021.05.30.trig:
+	mkdir -p $(DIR_SHARED)
+	wget "$(URL_DATASET)" -O $(DIR_SHARED)/2021.05.30.trig
