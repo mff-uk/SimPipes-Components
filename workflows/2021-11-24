@@ -28,7 +28,7 @@ $(DIR_OUTPUT)/datasets-mapping: $(DIR_OUTPUT)/labels-cs.jsonl $(DIR_OUTPUT)/data
 	$(PYTHON) ../processors/map-dataset-to-knowledge/bag-of-words-mapper/map-bag-of-words.py --input $(DIR_OUTPUT)/datasets --entities $(DIR_OUTPUT)/labels-cs.jsonl --output $(DIR_OUTPUT)/datasets-mapping --sourceProperty title description keywords --targetProperty title_mapped description_mapped keywords_mapped --sharedThreshold 0.66 --normalize
 
 	printf '[TIME] json-union.py %s\n' "$$(date --iso=seconds)"
-	$(PYTHON) ../utilities/json-union/json-union.py --input $(DIR_OUTPUT)/datasets-mapping --output $(DIR_OUTPUT)/datasets-mapping --sourceProperty title_mapped description_mapped keywords_mapped --targetProperty mapping
+	$(PYTHON) ../processors/utilities/json-union/json-union.py --input $(DIR_OUTPUT)/datasets-mapping --output $(DIR_OUTPUT)/datasets-mapping --sourceProperty title_mapped description_mapped keywords_mapped --targetProperty mapping
 	printf '[TIME] done %s\n' "$$(date --iso=seconds)"
 
 $(DIR_OUTPUT)/labels-cs.jsonl: $(DIR_SHARED)/20181217.json.gz
