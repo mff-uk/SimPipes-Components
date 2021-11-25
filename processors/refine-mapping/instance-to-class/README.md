@@ -38,5 +38,5 @@ python instance-to-class.py \
     --output ./output \
     --sourceProperty title_mapping \
     --targetProperty title_mapping_refined \
-    --knowledge wikidata-hierarchy.jsonl
+    --knowledge ./input-sample/hierarchy.jsonl
 ```

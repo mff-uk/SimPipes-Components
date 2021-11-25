@@ -1,0 +1,95 @@
+{
+  "title_mapping": [
+    [
+      {
+        "metadata": {
+          "from": "title",
+          "input": [
+            "meteostanice",
+            "hrudickova"
+          ]
+        },
+        "data": [
+          {
+            "id": "Q23"
+          }
+        ]
+      }
+    ],
+    {
+      "metadata": {
+        "from": "title",
+        "input": [
+          "meteostanice",
+          "hrudickova"
+        ]
+      },
+      "data": [
+        {
+          "id": "Q24",
+          "metadata": {
+            "group": [
+              "meteostanice"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "title_mapping_refined": {
+    "data": [
+      {
+        "metadata": {
+          "from": "title",
+          "input": [
+            "meteostanice",
+            "hrudickova"
+          ]
+        },
+        "data": [
+          {
+            "@id": "Q5",
+            "metadata": {
+              "reducedFrom": "Q23"
+            }
+          }
+        ]
+      },
+      {
+        "metadata": {
+          "from": "title",
+          "input": [
+            "meteostanice",
+            "hrudickova"
+          ]
+        },
+        "data": [
+          {
+            "@id": "Q15632617",
+            "metadata": {
+              "reducedFrom": "Q24",
+              "group": [
+                "meteostanice"
+              ]
+            }
+          },
+          {
+            "@id": "Q15773317",
+            "metadata": {
+              "reducedFrom": "Q24",
+              "group": [
+                "meteostanice"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "metadata": [
+      {
+        "from": "title_mapping",
+        "transformer": "instance-to-class"
+      }
+    ]
+  }
+}
