@@ -1,22 +1,58 @@
-# Prepares knowledge graph from Wikidata dump 
+# Prepares knowledge graph from Wikidata.
 # https://zenodo.org/record/4436356#.YZ3jLNCZND8
+# In the next step knowledge graph entities are mapped to the knowledge graph.
+# After that the mapping is updated.
+# The last step extracts the mapped entities to CSV file.
+# This produce file in format : dataset;wikidata_entity;mapped
 
-WIKIDATA = https://zenodo.org/record/4436356/files/20181217.json.gz?download=1
+URL_WIKIDATA = https://zenodo.org/record/4436356/files/20181217.json.gz?download=1
+URL_DATASET = https://zenodo.org/record/4433464/files/2020.04.20-data.gov.cz-no-cuzk.trig?download=1
 DIR_OUTPUT = ./data/2021-11-24
 DIR_SHARED = ./data/shared
 TIME_LOG_FILE = 2021-05-30.log
 PYTHON = python3
 
-all: $(DIR_OUTPUT)/labels-cs.jsonl
-	
+all: $(DIR_OUTPUT)/datasets-mapping-reduced
+	# printf '[TIME] json-to-csv.py %s\n' "$$(date --iso=seconds)"
+	# json-to-csv
+
+$(DIR_OUTPUT)/datasets-mapping-reduced: $(DIR_OUTPUT)/datasets-mapping $(DIR_OUTPUT)/wikidata-hierarchy.jsonl
+	mkdir -p $(DIR_OUTPUT)/datasets-mapping-reduced
+	printf '[TIME] instance-to-class.py %s\n' "$$(date --iso=seconds)"
+	$(PYTHON) ../processors/refine-mapping/instance-to-class/instance-to-class.py --input $(DIR_OUTPUT)/datasets-mapping --output $(DIR_OUTPUT)/datasets-mapping-reduced --sourceProperty mapping --targetProperty mapping_refined --knowledge $(DIR_OUTPUT)/wikidata-hierarchy.jsonl
+	printf '[TIME] done %s\n' "$$(date --iso=seconds)"
+
+$(DIR_OUTPUT)/datasets-mapping: $(DIR_OUTPUT)/labels-cs.jsonl $(DIR_OUTPUT)/datasets
+	mkdir -p $(DIR_OUTPUT)/datasets-mapping
+	printf '[TIME] map-bag-of-words.py %s\n' "$$(date --iso=seconds)"
+	$(PYTHON) ../processors/map-dataset-to-knowledge/bag-of-words-mapper/map-bag-of-words.py --input $(DIR_OUTPUT)/datasets --entities $(DIR_OUTPUT)/labels-cs.jsonl --output $(DIR_OUTPUT)/datasets-mapping --sourceProperty title description keywords --targetProperty title_mapped description_mapped keywords_mapped --sharedThreshold 0.66 --normalize
+
+	printf '[TIME] json-union.py %s\n' "$$(date --iso=seconds)"
+	$(PYTHON) ../utilities/json-union/json-union.py --input $(DIR_OUTPUT)/datasets-mapping --output $(DIR_OUTPUT)/datasets-mapping --sourceProperty title_mapped description_mapped keywords_mapped --targetProperty mapping
+	printf '[TIME] done %s\n' "$$(date --iso=seconds)"
+
 $(DIR_OUTPUT)/labels-cs.jsonl: $(DIR_SHARED)/20181217.json.gz
 	mkdir -p $(DIR_OUTPUT)
-
 	printf '[TIME] wikidata-labels-extractor.py %s\n' "$$(date --iso=seconds)"
 	$(PYTHON) ../extractors/extract-external-knowledge/wikidata-labels-extractor/wikidata-labels-extractor.py --input $(DIR_SHARED)/20181217.json.gz --language cs --output $(DIR_OUTPUT)/labels-cs.jsonl
+	printf '[TIME] done %s\n' "$$(date --iso=seconds)"
 
-	printf '[TIME] all done %s\n' "$$(date --iso=seconds)"
+$(DIR_OUTPUT)/wikidata-hierarchy.jsonl: $(DIR_SHARED)/20181217.json.gz
+	mkdir -p $(DIR_OUTPUT)
+	printf '[TIME] wikidata-hierarchy-extractor.py %s\n' "$$(date --iso=seconds)"
+	$(PYTHON) ../extractors/extract-external-knowledge/wikidata-hierarchy-extractor/wikidata-hierarchy-extractor.py --input $(DIR_SHARED)/20181217.json.gz --output $(DIR_OUTPUT)/wikidata-hierarchy.jsonl
+	printf '[TIME] done %s\n' "$$(date --iso=seconds)"
 
 $(DIR_SHARED)/20181217.json.gz:
 	mkdir -p ./data/shared
-	wget "$(WIKIDATA)" -O $(DIR_SHARED)/20181217.json.gz
+	wget "$(URL_WIKIDATA)" -O $(DIR_SHARED)/20181217.json.gz
+
+$(DIR_OUTPUT)/datasets: $(DIR_SHARED)/2020.04.20.trig
+	mkdir -p $(DIR_OUTPUT)/datasets
+	printf '[TIME] dcat-ap-extractor %s\n' "$$(date --iso=seconds)"
+	$(PYTHON) ../extractors/extract-metadata-descriptor/dcat-ap-extractor/dcat-ap-extractor.py --input ./$(DIR_SHARED)/2020.04.20.trig --language cs --output $(DIR_OUTPUT)/datasets
+	printf '[TIME] done %s\n' "$$(date --iso=seconds)"
+
+$(DIR_SHARED)/2020.04.20.trig:
+	mkdir -p $(DIR_SHARED)
+	wget "$(URL_DATASET)" -O $(DIR_SHARED)/2020.04.20.trig

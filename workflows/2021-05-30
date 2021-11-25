@@ -25,7 +25,7 @@ $(DIR_OUTPUT)/datasets: $(DIR_SHARED)/2021.05.30.trig
 	printf '[TIME] json-to-csv.py %s\n' "$$(date --iso=seconds)"
 	$(PYTHON) ../processors/refine-descriptor/json-to-csv/json-to-csv.py --input $(DIR_OUTPUT)/datasets --output $(DIR_OUTPUT)/keywords-en.csv --property keywords-en --linePerValue
 
-    printf '[TIME] all done %s\n' "$$(date --iso=seconds)"
+    printf '[TIME] done %s\n' "$$(date --iso=seconds)"
 
 $(DIR_SHARED)/2021.05.30.trig:
 	mkdir -p $(DIR_SHARED)
