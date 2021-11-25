@@ -1,38 +1,33 @@
 {
-  "title_mapping": [
-    [
-      {
-        "metadata": {
-          "from": "title",
-          "input": [
-            "meteostanice",
-            "hrudickova"
-          ]
-        },
-        "data": [
-          {
-            "id": "Q23"
+  "title_mapping": {
+    "data": [
+      [
+        {
+          "id": "Q7876008",
+          "metadata": {
+            "shared": 1.0,
+            "shared_tokens": [
+              "utj"
+            ]
           }
-        ]
-      }
-    ], {
-      "metadata": {
-        "from": "title",
-        "input": [
-          "meteostanice",
-          "hrudickova"
-        ]
-      },
-      "data": [
+        },
         {
           "id": "Q24",
           "metadata": {
-            "group": [
-              "meteostanice"
+            "shared": 1.0,
+            "shared_tokens": [
+              "utj"
             ]
           }
         }
       ]
-    }
-  ]
+    ],
+    "metadata": [
+      {
+        "transformer": "bag-of-words-mapper",
+        "from": "title-cs",
+        "threshold": 0.66
+      }
+    ]
+  }
 }

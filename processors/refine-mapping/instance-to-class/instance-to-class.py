@@ -80,7 +80,13 @@ def _collect_entities(input_directory: str, source_property: str) \
     for index, _, content in _iterate_input_files(input_directory):
         values, _ = _select_property(source_property, content)
         for value in _flatten_array(values):
-            result.add(value["id"])
+            if "id" in value:
+                result.add(value["id"])
+            elif "data" in value and "id" in value["data"]:
+                result.add(value["data"]["id"])
+            else:
+                print(value)
+                raise Exception("Can't find key");
         if index % 1000 == 0:
             logging.info("    %s", index)
     logging.info("    %s", index)
@@ -181,34 +187,26 @@ def _create_transitive_mapping(mapping: typing.Dict[str, str]) \
 
 
 def _transform_property(transitive_mapping, values):
-    if not isinstance(values, list):
-        values = [values]
     result = []
-    for value in _flatten_array(values):
-        value_result = []
-        for mapping in value["data"]:
-            entity_id = mapping["id"]
-            mapped_to = transitive_mapping.get(entity_id, None)
-            if mapped_to is None:
-                # No information about mapping.
-                value_result.append(mapping)
-                continue
-            if len(mapped_to) == 1 and mapped_to[0] == entity_id:
-                # Map item to it self, so no change in here.
-                value_result.append(mapping)
-                continue
-            for new_entity_id in mapped_to:
-                value_result.append({
-                    "@id": new_entity_id,
-                    "metadata": {
-                        "reducedFrom": entity_id,
-                        **mapping.get("metadata", {}),
-                    }
-                })
-        result.append({
-            "metadata": value.get("metadata", None),
-            "data": value_result,
-        })
+    for mapping in _flatten_array(values):
+        entity_id = mapping["id"]
+        mapped_to = transitive_mapping.get(entity_id, None)
+        if mapped_to is None:
+            # No information about mapping.
+            result.append(mapping)
+            continue
+        if len(mapped_to) == 1 and mapped_to[0] == entity_id:
+            # Map item to it self, so no change in here.
+            result.append(mapping)
+            continue
+        for new_entity_id in mapped_to:
+            result.append({
+                "@id": new_entity_id,
+                "metadata": {
+                    "reducedFrom": entity_id,
+                    **mapping.get("metadata", {}),
+                }
+            })
     return result
 
 

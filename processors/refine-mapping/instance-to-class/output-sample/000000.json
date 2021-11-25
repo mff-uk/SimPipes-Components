@@ -1,91 +1,77 @@
 {
-  "title_mapping": [
-    [
-      {
-        "metadata": {
-          "from": "title",
-          "input": [
-            "meteostanice",
-            "hrudickova"
-          ]
-        },
-        "data": [
-          {
-            "id": "Q23"
+  "title_mapping": {
+    "data": [
+      [
+        {
+          "id": "Q7876008",
+          "metadata": {
+            "shared": 1.0,
+            "shared_tokens": [
+              "utj"
+            ]
           }
-        ]
-      }
-    ],
-    {
-      "metadata": {
-        "from": "title",
-        "input": [
-          "meteostanice",
-          "hrudickova"
-        ]
-      },
-      "data": [
+        },
         {
           "id": "Q24",
           "metadata": {
-            "group": [
-              "meteostanice"
+            "shared": 1.0,
+            "shared_tokens": [
+              "utj"
             ]
           }
         }
       ]
-    }
-  ],
+    ],
+    "metadata": [
+      {
+        "transformer": "bag-of-words-mapper",
+        "from": "title-cs",
+        "threshold": 0.66
+      },
+      {
+        "from": "title_mapping",
+        "transformer": "instance-to-class"
+      }
+    ]
+  },
   "title_mapping_refined": {
     "data": [
       {
+        "id": "Q7876008",
         "metadata": {
-          "from": "title",
-          "input": [
-            "meteostanice",
-            "hrudickova"
+          "shared": 1.0,
+          "shared_tokens": [
+            "utj"
           ]
-        },
-        "data": [
-          {
-            "@id": "Q5",
-            "metadata": {
-              "reducedFrom": "Q23"
-            }
-          }
-        ]
+        }
       },
       {
+        "@id": "Q15632617",
         "metadata": {
-          "from": "title",
-          "input": [
-            "meteostanice",
-            "hrudickova"
+          "reducedFrom": "Q24",
+          "shared": 1.0,
+          "shared_tokens": [
+            "utj"
           ]
-        },
-        "data": [
-          {
-            "@id": "Q15632617",
-            "metadata": {
-              "reducedFrom": "Q24",
-              "group": [
-                "meteostanice"
-              ]
-            }
-          },
-          {
-            "@id": "Q15773317",
-            "metadata": {
-              "reducedFrom": "Q24",
-              "group": [
-                "meteostanice"
-              ]
-            }
-          }
-        ]
+        }
+      },
+      {
+        "@id": "Q15773317",
+        "metadata": {
+          "reducedFrom": "Q24",
+          "shared": 1.0,
+          "shared_tokens": [
+            "utj"
+          ]
+        }
       }
     ],
     "metadata": [
+      {
+        "transformer": "bag-of-words-mapper",
+        "from": "title-cs",
+        "threshold": 0.66
+      },
       {
         "from": "title_mapping",
         "transformer": "instance-to-class"
