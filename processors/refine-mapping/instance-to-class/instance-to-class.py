@@ -80,8 +80,7 @@ def _collect_entities(input_directory: str, source_property: str) \
     for index, _, content in _iterate_input_files(input_directory):
         values, _ = _select_property(source_property, content)
         for value in _flatten_array(values):
-            for item in value["data"]:
-                result.add(item["id"])
+            result.add(value["id"])
         if index % 1000 == 0:
             logging.info("    %s", index)
     logging.info("    %s", index)
