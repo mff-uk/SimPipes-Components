@@ -28,6 +28,6 @@ JSON [dump](https://dumps.wikimedia.org/other/wikidata/20181217.json.gz).
 ```shell
 python3 wikidata-labels-extractor.py \
     --input ./input-sample/wikidata.json \
-    --output ./output/labels.jsonl \
+    --output ./output-sample/labels.jsonl \
     --language cs
 ```

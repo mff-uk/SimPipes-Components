@@ -20,9 +20,14 @@ of strings, it is left unchanged.
 - ```output``` - Path to output directory.
 - ```sourceProperty``` - Name(s) of property to load values from.
 - ```targetProperty``` - Name(s) of property to save transformed values into.
+- ```pretty``` - Pretty print the output.
 
 ## Execution
 [Script](script)
 ```shell
-python tokenize-json.py --input ./input-sample --output ./output-sample --sourceProperty description keywords --targetProperty description-tokens keywords-tokens
+python3 tokenize-json.py \
+  --input ./input-sample \
+  --output ./output-sample \
+  --sourceProperty description keywords \
+  --targetProperty description-tokens keywords-tokens --pretty
 ```

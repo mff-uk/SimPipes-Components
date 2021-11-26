@@ -39,10 +39,17 @@ own initiate check for mapping, but they can contribute to it.
 - ```targetProperty``` - Name of property to save mappings into.
 - ```sharedThreshold``` - How many of the words must be shared in order to 
                           create a mapping.
-- ```normalize``` - Normalize tokens before mapping, i.e. make lowercase. 
+- ```normalize``` - Normalize tokens before mapping, i.e., make lowercase. 
+- ```pretty``` - Pretty print the output.
 
 ## Execution
 [Script](script)
 ```shell
-python map-bag-of-words.py --input ./input-sample/datasets/ --entities ./input-sample/labels.jsonl --output ./output-sample --sourceProperty description keywords --targetProperty description_mapped keywords_mapped --sharedThreshold 0.66 --normalize
+python3 map-bag-of-words.py \
+  --input ./input-sample/datasets/ \
+  --entities ./input-sample/labels.jsonl \
+  --output ./output-sample \
+  --sourceProperty description keywords \
+  --targetProperty description_mapped keywords_mapped \ 
+  --sharedThreshold 0.66 --normalize --pretty
 ```

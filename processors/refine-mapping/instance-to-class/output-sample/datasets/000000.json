@@ -1,6 +1,7 @@
 {
   "title_mapping": {
     "data": [
+      [],
       [
         {
           "id": "Q7876008",
@@ -27,10 +28,6 @@
         "transformer": "bag-of-words-mapper",
         "from": "title-cs",
         "threshold": 0.66
-      },
-      {
-        "from": "title_mapping",
-        "transformer": "instance-to-class"
       }
     ]
   },
@@ -46,7 +43,7 @@
         }
       },
       {
-        "@id": "Q15632617",
+        "@id": "Q15773317",
         "metadata": {
           "reducedFrom": "Q24",
           "shared": 1.0,
@@ -56,7 +53,7 @@
         }
       },
       {
-        "@id": "Q15773317",
+        "@id": "Q15632617",
         "metadata": {
           "reducedFrom": "Q24",
           "shared": 1.0,
@@ -66,16 +63,9 @@
         }
       }
     ],
-    "metadata": [
-      {
-        "transformer": "bag-of-words-mapper",
-        "from": "title-cs",
-        "threshold": 0.66
-      },
-      {
-        "from": "title_mapping",
-        "transformer": "instance-to-class"
-      }
-    ]
+    "metadata": {
+      "from": "title_mapping",
+      "transformer": "instance-to-class"
+    }
   }
 }

@@ -1,6 +1,51 @@
 {
-  "iri": "https://data.gov.cz/zdroj/datov\u00e9-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66",
   "title": "Dataset title",
-  "keywords": ["First", "Second"],
-  "title_keywords": ["Dataset title", "First", "Second"]
+  "keywords": [
+    "First",
+    [
+      "Second"
+    ],
+    {
+      "id": "Third"
+    },
+    [
+      {
+        "id": "Fourth"
+      }
+    ]
+  ],
+  "description": {
+    "data": "Text",
+    "metadata": {
+      "name": "description"
+    }
+  },
+  "union": {
+    "data": [
+      "Dataset title",
+      "First",
+      [
+        "Second"
+      ],
+      {
+        "id": "Third"
+      },
+      [
+        {
+          "id": "Fourth"
+        }
+      ],
+      "Text"
+    ],
+    "metadata": [
+      {
+        "transformer": "json-union",
+        "joined": [
+          "title",
+          "keywords",
+          "description"
+        ]
+      }
+    ]
+  }
 }

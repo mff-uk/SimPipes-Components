@@ -29,5 +29,5 @@ edges from a Wikidata JSON
 ```shell
 python3 wikidata-hierarchy-extractor.py \
     --input ./input-sample/wikidata.json \
-    --output ./output/hiearchy.jsonl
+    --output ./output-sample/hierarchy.jsonl
 ```

@@ -15,7 +15,7 @@ def _parse_arguments():
     parser.add_argument("--input", required=True,
                         help="Path to input CSV file with labels.")
     parser.add_argument("--output", required=True,
-                        help="Path to output JSONL file.")
+                        help="Path to output JSON lines file.")
     return vars(parser.parse_args())
 
 

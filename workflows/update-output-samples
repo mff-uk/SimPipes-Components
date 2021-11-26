@@ -1,0 +1,70 @@
+
+all:
+	cd ../extractors/extract-external-knowledge/csv-to-knowledge ; \
+	python3 csv-to-knowledge.py \
+		--input ./input-sample/data.csv \
+		--output ./output-sample/data.jsonl
+
+	cd ../extractors/extract-external-knowledge/wikidata-hierarchy-extractor ; \
+	python3 wikidata-hierarchy-extractor.py \
+		--input ./input-sample/wikidata.json \
+		--output ./output-sample/hierarchy.jsonl
+
+	cd ../extractors/extract-external-knowledge/wikidata-labels-extractor ;	\
+	python3 wikidata-labels-extractor.py \
+		--input ./input-sample/wikidata.json \
+		--output ./output-sample/labels.jsonl \
+		--language cs
+
+	cd ../extractors/extract-metadata-descriptor/dcat-ap-extractor ; \
+	python3 dcat-ap-extractor.py \
+	  --input ./input-sample/nkod.trig \
+	  --output ./output-sample --language cs --pretty
+
+	cd ../processors/map-dataset-to-knowledge/bag-of-words-mapper ; \
+	python3 map-bag-of-words.py \
+	  --input ./input-sample/datasets/ \
+	  --entities ./input-sample/labels.jsonl \
+	  --output ./output-sample \
+	  --sourceProperty description keywords \
+	  --targetProperty description_mapped keywords_mapped \
+	  --sharedThreshold 0.66 --normalize --pretty
+
+	cd ../processors/map-dataset-to-knowledge/exact-match-mapper ; \
+	python3 exact-match-mapper.py \
+	  --input ./input-sample/datasets/ \
+	  --entities ./input-sample/labels.jsonl \
+	  --output ./output-sample \
+	  --sourceProperty description keywords \
+	  --targetProperty description_mapped keywords_mapped \
+	  --normalize --pretty
+
+	cd ../processors/refine-descriptor/json-to-csv ; \
+	python3 json-to-csv.py \
+	  --input ./input-sample/datasets \
+	  --output ./output-sample/keywords.csv \
+	  --property keywords_mapped --linePerValue
+
+	cd ../processors/refine-descriptor/tokenize-json ; \
+	python3 tokenize-json.py \
+	  --input ./input-sample \
+	  --output ./output-sample \
+	  --sourceProperty description keywords \
+	  --targetProperty description-tokens keywords-tokens --pretty
+
+	cd ../processors/utilities/json-union ; \
+	python3 json-union.py \
+	  --input ./input-sample/datasets \
+	  --output ./output-sample/datasets \
+	  --sourceProperty title keywords description \
+	  --targetProperty union --pretty
+
+	cd ../processors/refine-mapping/instance-to-class ; \
+	python3 instance-to-class.py \
+	--input ./input-sample/datasets \
+	--output ./output-sample/datasets \
+	--sourceProperty title_mapping \
+	--targetProperty title_mapping_refined \
+	--knowledge ./input-sample/hierarchy.jsonl --pretty
+
+

@@ -35,8 +35,10 @@ TIME_LOG_FILE = 2021-05-30.log
 PYTHON = python3
 
 all: $(DIR_OUTPUT)/datasets-mapping-reduced
-	# printf '[TIME] json-to-csv.py %s\n' "$$(date --iso=seconds)"
-	# json-to-csv
+	printf '[TIME] json-to-csv.py %s\n' "$$(date --iso=seconds)"
+	$(PYTHON) ../processors/refine-descriptor/json-to-csv/json-to-csv.py --input $(DIR_OUTPUT)/datasets-mapping-reduced  --output $(DIR_OUTPUT)/mapping.csv --property mapping --linePerValue
+	$(PYTHON) ../processors/refine-descriptor/json-to-csv/json-to-csv.py --input $(DIR_OUTPUT)/datasets-mapping-reduced  --output $(DIR_OUTPUT)/mapping-refined.csv --property mapping-refined --linePerValue
+	printf '[TIME] done %s\n' "$$(date --iso=seconds)"
 
 $(DIR_OUTPUT)/datasets-mapping-reduced: $(DIR_OUTPUT)/datasets-mapping $(DIR_OUTPUT)/wikidata-hierarchy.jsonl
 	mkdir -p $(DIR_OUTPUT)/datasets-mapping-reduced
@@ -55,19 +57,19 @@ $(DIR_OUTPUT)/datasets-mapping: $(DIR_OUTPUT)/labels-cs.jsonl $(DIR_OUTPUT)/data
 
 $(DIR_OUTPUT)/labels-cs.jsonl: $(DIR_SHARED)/20181217.json.gz
 	mkdir -p $(DIR_OUTPUT)
-	printf '[TIME] wikidata-labels-extractor.py %s\n' "$$(date --iso=seconds)"
-	$(PYTHON) ../extractors/extract-external-knowledge/wikidata-labels-extractor/wikidata-labels-extractor.py --input $(DIR_SHARED)/20181217.json.gz --language cs --output $(DIR_OUTPUT)/labels-cs.jsonl
-	printf '[TIME] done %s\n' "$$(date --iso=seconds)"
+	#printf '[TIME] wikidata-labels-extractor.py %s\n' "$$(date --iso=seconds)"
+	#$(PYTHON) ../extractors/extract-external-knowledge/wikidata-labels-extractor/wikidata-labels-extractor.py --input $(DIR_SHARED)/20181217.json.gz --language cs --output $(DIR_OUTPUT)/labels-cs.jsonl
+	#printf '[TIME] done %s\n' "$$(date --iso=seconds)"
 
 $(DIR_OUTPUT)/wikidata-hierarchy.jsonl: $(DIR_SHARED)/20181217.json.gz
 	mkdir -p $(DIR_OUTPUT)
-	printf '[TIME] wikidata-hierarchy-extractor.py %s\n' "$$(date --iso=seconds)"
-	$(PYTHON) ../extractors/extract-external-knowledge/wikidata-hierarchy-extractor/wikidata-hierarchy-extractor.py --input $(DIR_SHARED)/20181217.json.gz --output $(DIR_OUTPUT)/wikidata-hierarchy.jsonl
-	printf '[TIME] done %s\n' "$$(date --iso=seconds)"
+	#printf '[TIME] wikidata-hierarchy-extractor.py %s\n' "$$(date --iso=seconds)"
+	#$(PYTHON) ../extractors/extract-external-knowledge/wikidata-hierarchy-extractor/wikidata-hierarchy-extractor.py --input $(DIR_SHARED)/20181217.json.gz --output $(DIR_OUTPUT)/wikidata-hierarchy.jsonl
+	#printf '[TIME] done %s\n' "$$(date --iso=seconds)"
 
 $(DIR_SHARED)/20181217.json.gz:
 	mkdir -p ./data/shared
-	wget "$(URL_WIKIDATA)" -O $(DIR_SHARED)/20181217.json.gz
+	#wget "$(URL_WIKIDATA)" -O $(DIR_SHARED)/20181217.json.gz
 
 $(DIR_OUTPUT)/datasets: $(DIR_SHARED)/2020.04.20.trig
 	mkdir -p $(DIR_OUTPUT)/datasets

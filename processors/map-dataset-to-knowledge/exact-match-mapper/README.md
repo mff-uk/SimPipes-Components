@@ -34,10 +34,17 @@ label ```A B C``` and text ```0 A B C 1``` we do not got match, same for
 - ```output``` - Path to output file.
 - ```sourceProperty``` - Name of property to load values from mapping from.
 - ```targetProperty``` - Name of property to save mappings into.
-- ```normalize``` - Normalize tokens before mapping, i.e. make lowercase.
+- ```normalize``` - Normalize tokens before mapping, i.e., make lowercase.
+- ```pretty``` - Pretty print the output.
 
 ## Execution
 [Script](script)
 ```shell
-python exact-match-mapper.py --input ./input-sample/datasets/ --entities ./input-sample/labels.jsonl --output ./output-sample --sourceProperty description keywords --targetProperty description_mapped keywords_mapped --normalize
+python3 exact-match-mapper.py \
+  --input ./input-sample/datasets/ \
+  --entities ./input-sample/labels.jsonl \
+  --output ./output-sample \
+  --sourceProperty description keywords \
+  --targetProperty description_mapped keywords_mapped \
+  --normalize --pretty
 ```

@@ -65,19 +65,19 @@ def _convert_to_csv(arguments, write_values_fnc):
         writer.writerow(["iri", arguments["property"]])
         for _, content in _iterate_input_files(arguments["input"]):
             values, _ = _select_property(arguments["property"], content)
-            write_values_fnc(writer, content["iri"], values)
-    logging.info("Transforming files ... done")
+            values_to_write = []
+            for value in _flatten_data_items(values):
+                if isinstance(value, str):
+                    values_to_write.append(value)
+                elif "id" in value:
+                    values_to_write.append(value["id"])
+                else:
+                    #  Ignore the value.
+                    ...
+                    print("Invalid value to process:", value)
+                    exit(1)
 
-
-def _export_mode_default(arguments):
-    logging.info("Transforming files ...")
-    with open(arguments["output"], "w", newline="",
-              encoding="utf-8") as output_stream:
-        writer = csv.writer(output_stream, delimiter=",", quoting=csv.QUOTE_ALL)
-        writer.writerow(["iri", arguments["property"]])
-        for _, content in _iterate_input_files(arguments["input"]):
-            values, _ = _select_property(arguments["property"], content)
-            writer.writerow([content["iri"], *_values_to_list(values)])
+            write_values_fnc(writer, content["iri"], values_to_write)
     logging.info("Transforming files ... done")
 
 
@@ -104,8 +104,17 @@ def _iterate_input_files(input_directory: str):
     logging.info("    %s / %s", len(files), len(files))
 
 
-# endregion
+def _flatten_data_items(values):
+    result = []
+    for value in values:
+        if isinstance(value, list):
+            result.extend(value)
+        else:
+            result.append(value)
+    return result
 
+
+# endregion
 
 if __name__ == "__main__":
     main(_parse_arguments())

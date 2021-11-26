@@ -28,7 +28,7 @@ For the given example the output looks like this:
 "dataset-iri", "second"
 ```
 
-If the value is tokenized it is joined into a string using space before it 
+If the value is tokenized ,it is joined into a string using space before it 
 is exported.
 
 ## Requirements
@@ -53,9 +53,8 @@ is exported.
 ## Execution
 [Script](script)
 ```shell
-python json-to-csv.py --input ./input-sample/datasets --output ./output-sample/description.csv --property description
-```
-or
-```shell
-python json-to-csv.py --input ./input-sample/datasets --output ./output-sample/keywords.csv --property keywords --linePerValue
+python3 json-to-csv.py \
+  --input ./input-sample/datasets \
+  --output ./output-sample/keywords.csv \
+  --property keywords_mapped --linePerValue
 ```

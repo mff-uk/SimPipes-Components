@@ -1,28 +1,31 @@
 {
-  "iri": "https://data.gov.cz/zdroj/datové-sady/CSShZbzpcn/695492977/e988df562404563df033051993a7dd66",
-  "description": {
+  "iri": "http://example.com",
+  "keywords_mapped": {
     "data": [
+      [],
       [
-        "Ciselnik",
-        "druh",
-        "akce",
-        "v",
-        "tiskopis",
-        "oznameni",
-        "o",
-        "nastup",
-        "do",
-        "zamestnani"
-      ]
-    ]
-  },
-  "keywords": {
-    "data": [
-      "číselník",
+        {
+          "id": "Q4",
+          "metadata": {
+            "shared_tokens": [
+              "počasí"
+            ]
+          }
+        },
+        {
+          "id": "Q15"
+        }
+      ],
+      "text",
       [
-        "maličká",
-        "domovina"
+        "another-text"
       ]
+    ],
+    "metadata": [
+      {
+        "transformer": "exact-match-mapper.py",
+        "from": "keywords"
+      }
     ]
   }
 }

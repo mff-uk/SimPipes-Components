@@ -4,6 +4,7 @@
 import json
 import os
 import logging
+import shutil
 import typing
 import argparse
 import itertools
@@ -17,13 +18,13 @@ def _parse_arguments():
     parser.add_argument("--output", required=True,
                         help="Path to output descriptor directory.")
     parser.add_argument("--knowledge", required=True,
-                        help="Path to JSONL files with hierarchy.")
+                        help="Path to JSON lines files with hierarchy.")
     parser.add_argument("--sourceProperty", required=True,
                         help="Name of a source property to transform.")
     parser.add_argument("--targetProperty", required=True,
                         help="Name of a property to store result into.")
-    parser.add_argument("--sharedThreshold", type=float, default=0.6,
-                        help="How many of entity tokens must be shared.")
+    parser.add_argument("--pretty", action="store_true",
+                        help="Pretty print the output.")
     return vars(parser.parse_args())
 
 
@@ -69,7 +70,9 @@ def refine_mapping(arguments):
         )
         return content
 
-    _transform_files(arguments["input"], arguments["output"], file_transformer)
+    _transform_files(
+        arguments["pretty"], arguments["input"], arguments["output"],
+        file_transformer)
 
 
 def _collect_entities(input_directory: str, source_property: str) \
@@ -201,7 +204,7 @@ def _transform_property(transitive_mapping, values):
             continue
         for new_entity_id in mapped_to:
             result.append({
-                "@id": new_entity_id,
+                "id": new_entity_id,
                 "metadata": {
                     "reducedFrom": entity_id,
                     **mapping.get("metadata", {}),
@@ -227,12 +230,11 @@ def _iterate_json_lines(file_path: str) \
 def _transform_dataset_property(
         source_property: str, target_property: str,
         content, metadata, transformer) -> None:
-    property_values, property_metadata = \
+    property_values, _ = \
         _select_property(source_property, content)
-    property_metadata.append(metadata)
     content[target_property] = {
         "data": transformer(property_values),
-        "metadata": property_metadata
+        "metadata": metadata
     }
 
 
@@ -255,14 +257,14 @@ def _select_property(
 
 
 def _transform_files(
-        input_directory: str, output_directory: str, transformer) -> None:
+        pretty: bool, input_directory: str, output_directory: str,
+        transformer) -> None:
     logging.info("Transforming files ...")
     index = 0
     for index, file_name, content in _iterate_input_files(input_directory):
         result = transformer(content)
         output_file = os.path.join(output_directory, file_name)
-        with open(output_file, "w", encoding="utf-8") as stream:
-            json.dump(result, stream, ensure_ascii=False)
+        _write_json(pretty, output_file, result)
         if index % 1000 == 0:
             logging.info("    %s", index)
     logging.info("    %s", index)
@@ -275,6 +277,14 @@ def _iterate_input_files(input_directory: str):
         with open(input_file, "r", encoding="utf-8") as stream:
             input_content = json.load(stream)
         yield index, file_name, input_content
+
+
+def _write_json(pretty: bool, path: str, content):
+    temp_path = path + ".swp"
+    with open(temp_path, "w", encoding="utf-8") as stream:
+        json.dump(content, stream, ensure_ascii=False,
+                  indent=2 if pretty else None)
+    shutil.move(temp_path, path)
 
 
 # endregion

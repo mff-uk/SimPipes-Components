@@ -31,6 +31,8 @@ def _parse_arguments():
                         help="Specify file loader.")
     parser.add_argument("--language", required=True, nargs="+", metavar="L",
                         help="Languages to extract.")
+    parser.add_argument("--pretty", action="store_true",
+                        help="Pretty print the output.")
     return vars(parser.parse_args())
 
 
@@ -40,10 +42,12 @@ def main(arguments):
     logging.info("Processing input file ...")
     if arguments["format"] == "n3-sorted":
         dcat_ap_n3_to_json(
-            arguments["input"], arguments["output"], arguments["language"])
+            arguments["input"], arguments["output"], arguments["language"],
+            arguments["pretty"])
     elif arguments["format"] == "trig":
         dcat_ap_trig_to_json(
-            arguments["input"], arguments["output"], arguments["language"])
+            arguments["input"], arguments["output"], arguments["language"],
+            arguments["pretty"])
     else:
         raise Exception("Invalid input format.")
     logging.info("Processing input file ... done")
@@ -58,7 +62,7 @@ def _init_logging() -> None:
 
 def dcat_ap_n3_to_json(
         source_file: str, target_directory: str,
-        languages: typing.List[str]) -> None:
+        languages: typing.List[str], pretty: bool) -> None:
     """Load N3 file, where triples are sorted."""
     check_for_dataset = lambda content: VOCABULARY["Dataset"] in content
     for index, graph in enumerate(
@@ -72,7 +76,7 @@ def dcat_ap_n3_to_json(
         target_path = os.path.join(
             target_directory,
             str(index).zfill(9) + ".json")
-        _write_json(target_path, dataset)
+        _write_json(pretty, target_path, dataset)
 
 
 def _chunked_by_resource_str(file: str, string_filter=None):
@@ -144,14 +148,15 @@ def _rdf_graph_to_entities(graph):
     return result
 
 
-def _write_json(path, content):
+def _write_json(pretty: bool, path: str, content):
     with open(path, "w", encoding="utf-8") as output_stream:
-        json.dump(content, output_stream, ensure_ascii=False)
+        json.dump(content, output_stream, ensure_ascii=False,
+                  indent=2 if pretty else None)
 
 
 def dcat_ap_trig_to_json(
         source_file: str, target_directory: str,
-        languages: typing.List[str]) -> None:
+        languages: typing.List[str], pretty: bool) -> None:
     """Load TRIG where each graph is only once."""
     for index, rdf_as_str in enumerate(_for_each_graph(source_file)):
         graph = rdflib.Graph()
@@ -160,7 +165,7 @@ def dcat_ap_trig_to_json(
         target_path = os.path.join(
             target_directory,
             str(index).zfill(6) + ".json")
-        _write_json(target_path, dataset)
+        _write_json(pretty, target_path, dataset)
 
 
 def _for_each_graph(file: str):

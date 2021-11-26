@@ -1,6 +1,6 @@
 # CSV to Knowledge
-Given CSV file with two columns. The first column is used as a entity identifier,
-the second label as a entity label.
+Given CSV file with two columns.
+The first column is used as an entity identifier, the second label as an entity label.
 
 ## Requirements
 - Python 3.8
@@ -24,5 +24,5 @@ the second label as a entity label.
 ```shell
 python3 csv-to-knowledge.py \
     --input ./input-sample/data.csv \
-    --output ./output/data.jsonl
+    --output ./output-sample/data.jsonl
 ```

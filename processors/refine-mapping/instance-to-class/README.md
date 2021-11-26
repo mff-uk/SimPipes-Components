@@ -29,14 +29,15 @@ instead.
 - ```sourceProperty``` - Source property with mapping to refine.
 - ```targetProperty``` - Property used to store refined mapping to.
 - ```knowledge``` - Path to external knowledge hierarchy file.
+- ```pretty``` - Pretty print the output.
 
 ## Execution
 [Script](script)
 ```shell
-python instance-to-class.py \ 
+python3 instance-to-class.py \ 
     --input ./input-sample/datasets \
-    --output ./output \
+    --output ./output-sample/datasets \
     --sourceProperty title_mapping \
     --targetProperty title_mapping_refined \
-    --knowledge ./input-sample/hierarchy.jsonl
+    --knowledge ./input-sample/hierarchy.jsonl --pretty
 ```

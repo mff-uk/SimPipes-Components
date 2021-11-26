@@ -36,6 +36,8 @@ def _parse_arguments():
                         help="How many of entity tokens must be shared.")
     parser.add_argument("--normalize", default=False, action="store_true",
                         help="Normalize tokes before mapping.")
+    parser.add_argument("--pretty", action="store_true",
+                        help="Pretty print the output.")
     return vars(parser.parse_args())
 
 
@@ -70,12 +72,14 @@ def create_mapping(arguments):
                     token_to_entity, values,
                     arguments["sharedThreshold"], arguments["normalize"]))
         return content
-
-    _transform_files(arguments["input"], arguments["output"], file_transformer)
+    _transform_files(
+        arguments["pretty"], arguments["input"], arguments["output"],
+        file_transformer)
 
 
 def _load_tokens(
-        input_directory: str, source_properties: list[str], normalize: bool
+        input_directory: str, source_properties: typing.List[str],
+        normalize: bool
 ) -> typing.Set[str]:
     logging.info("Loading tokens ...")
     tokens = set()
@@ -178,7 +182,7 @@ def _mapping_function(
 
 
 def _token_set_to_entity_mapping(
-        tokens: set[str], entity, shared_threshold: float
+        tokens: typing.Set[str], entity, shared_threshold: float
 ) -> typing.Optional:
     best_shared = 0
     best_shared_tokens = []
@@ -241,12 +245,13 @@ def _select_property(
 
 
 def _transform_files(
-        input_directory: str, output_directory: str, transformer) -> None:
+        pretty: bool, input_directory: str, output_directory: str,
+        transformer) -> None:
     logging.info("Transforming files ...")
     for file_name, content in _iterate_input_files(input_directory):
         result = transformer(content)
         output_file = os.path.join(output_directory, file_name)
-        _write_json(output_file, result)
+        _write_json(pretty, output_file, result)
     logging.info("Transforming files ... done")
 
 
@@ -262,10 +267,11 @@ def _iterate_input_files(input_directory: str):
     logging.info("    %s / %s", len(files), len(files))
 
 
-def _write_json(path, content):
+def _write_json(pretty: bool, path: str, content):
     temp_path = path + ".swp"
     with open(temp_path, "w", encoding="utf-8") as stream:
-        json.dump(content, stream, ensure_ascii=False)
+        json.dump(content, stream, ensure_ascii=False,
+                  indent=2 if pretty else None)
     shutil.move(temp_path, path)
 
 

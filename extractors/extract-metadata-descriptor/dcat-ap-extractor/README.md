@@ -28,9 +28,12 @@ The extracted metadata are stored in JSON files, one dataset per file.
 - ```output``` - Path to existing output directory.
 - ```format``` - Optional, input file format.
 - ```language``` - Languages to extract, use language tags. Multiple languages can be provided.
+- ```pretty``` - Pretty print the output.
 
 ## Execution
 [Script](script)
 ```shell
-python dcat-ap-extractor.py --input ./input-sample/nkod.trig --output ./output-sample --language cs
+python3 dcat-ap-extractor.py \
+  --input ./input-sample/nkod.trig \
+  --output ./output-sample --language cs -- pretty
 ```

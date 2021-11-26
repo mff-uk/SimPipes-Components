@@ -20,13 +20,14 @@ at the end of another.
 - ```output``` - Path to output file.
 - ```sourceProperty``` - List of names of properties to join.
 - ```targetProperty``` - Name of a property to save result into.
+- ```pretty``` - Pretty print the output.
 
 ## Execution
 [Script](script)
 ```shell
 python3 json-union.py \ 
     --input ./input-sample/datasets \
-    --output ./output \
-    --sourceProperty title keywords \
-    --targetProperty title_keywords
+    --output ./output-sample/datasets \
+    --sourceProperty title keywords description \
+    --targetProperty union --pretty
 ```
