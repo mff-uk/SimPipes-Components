@@ -26,6 +26,9 @@
 #   ),
 # )
 #
+# and produce $(DIR_OUTPUT)/mapping-refined.csv file, the above pipeline
+# without instanceToClass produce output  $(DIR_OUTPUT)/mapping.csv file.
+#
 
 URL_WIKIDATA = https://zenodo.org/record/4436356/files/20181217.json.gz?download=1
 URL_DATASET = https://zenodo.org/record/4433464/files/2020.04.20-data.gov.cz-no-cuzk.trig?download=1
@@ -57,15 +60,15 @@ $(DIR_OUTPUT)/datasets-mapping: $(DIR_OUTPUT)/labels-cs.jsonl $(DIR_OUTPUT)/data
 
 $(DIR_OUTPUT)/labels-cs.jsonl: $(DIR_SHARED)/20181217.json.gz
 	mkdir -p $(DIR_OUTPUT)
-	#printf '[TIME] wikidata-labels-extractor.py %s\n' "$$(date --iso=seconds)"
-	#$(PYTHON) ../extractors/extract-external-knowledge/wikidata-labels-extractor/wikidata-labels-extractor.py --input $(DIR_SHARED)/20181217.json.gz --language cs --output $(DIR_OUTPUT)/labels-cs.jsonl
-	#printf '[TIME] done %s\n' "$$(date --iso=seconds)"
+	printf '[TIME] wikidata-labels-extractor.py %s\n' "$$(date --iso=seconds)"
+	$(PYTHON) ../extractors/extract-external-knowledge/wikidata-labels-extractor/wikidata-labels-extractor.py --input $(DIR_SHARED)/20181217.json.gz --language cs --output $(DIR_OUTPUT)/labels-cs.jsonl
+	printf '[TIME] done %s\n' "$$(date --iso=seconds)"
 
 $(DIR_OUTPUT)/wikidata-hierarchy.jsonl: $(DIR_SHARED)/20181217.json.gz
 	mkdir -p $(DIR_OUTPUT)
-	#printf '[TIME] wikidata-hierarchy-extractor.py %s\n' "$$(date --iso=seconds)"
-	#$(PYTHON) ../extractors/extract-external-knowledge/wikidata-hierarchy-extractor/wikidata-hierarchy-extractor.py --input $(DIR_SHARED)/20181217.json.gz --output $(DIR_OUTPUT)/wikidata-hierarchy.jsonl
-	#printf '[TIME] done %s\n' "$$(date --iso=seconds)"
+	printf '[TIME] wikidata-hierarchy-extractor.py %s\n' "$$(date --iso=seconds)"
+	$(PYTHON) ../extractors/extract-external-knowledge/wikidata-hierarchy-extractor/wikidata-hierarchy-extractor.py --input $(DIR_SHARED)/20181217.json.gz --output $(DIR_OUTPUT)/wikidata-hierarchy.jsonl
+	printf '[TIME] done %s\n' "$$(date --iso=seconds)"
 
 $(DIR_SHARED)/20181217.json.gz:
 	mkdir -p ./data/shared
